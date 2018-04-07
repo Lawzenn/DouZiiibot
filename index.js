@@ -245,6 +245,7 @@ client.on('message', message => {
           .setDescription("__**ACTIVATIONS**__ (:regional_indicator_a:)\n" +
         "`logs` : *Créer un salon* ***#logs-douzii***\n" +
         "`Bienvenue-Bye` : *Se met dans un salon* ***#bienvenue-bye***")
+    message.author.send({embed});
       }
 
       if(message.content.startsWith(prefix + "help")) {
