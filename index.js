@@ -204,7 +204,7 @@ client.on('message', message => {
         .setDescription("__**DIVERS**__ : \n" +
             " `d!support` : *Te donne le serveur de mon créateur* :white_check_mark:\n" +
             " `d!invite` : *Te donne le lien pour minviter sur ton serveur* :white_check_mark:\n" +
-            "`d!report` : *Pour faire un report au developpeur ( bug, abus, etc ... )*:white_check_mark\n" +
+            "`d!report` : *Pour faire un report au developpeur ( bug, abus, etc ... )*:white_check_mark:\n" +
             "`d!demande` : *Pour faire une demande au developpeur ( ajout de commandes, modifications, etc ... )*:white_check_mark:\n")
       message.author.send({embed});
       message.reply(":point_right:help envoyé en MP:envelope_with_arrow:");
