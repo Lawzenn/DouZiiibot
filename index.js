@@ -6,7 +6,7 @@ var prefix = "d!";
 
 client.on('ready', () =>  {
     console.log("Je suis connecté !")
-     client.user.setActivity("d!help | © ❄🌨FroGroZe🌨❄#6893 | "+ client.guilds.size + " Serveurs, " + client.users.size + "  Utilisateurs")
+     client.user.setActivity("d!help | © 🌺🍃FroGroZe🍃🌺#6893 | "+ client.guilds.size + " Serveurs, " + client.users.size + "  Utilisateurs")
   });
 
   client.on("guildMemberAdd", member => {
@@ -146,7 +146,8 @@ client.on("messageDelete", (message) => {
     .setAuthor(message.author.tag, message.author.avatarURL)
     .setColor("#FE6F01")
     .setTitle("Un message a été supprimé ! :white_check_mark:")
-    .addField(`Le message de ${message.author} a été supprimé`, `**Message Supprimé** : ${message.cleanContent}`)
+    .setDescription(`Le message de ${message.author} a été supprimé`)
+    .addField(`Message Supprimé`, `${message.cleanContent}`)
     .setFooter(`ID : ${message.author.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
     .setTimestamp()
     logs.send({embed})
