@@ -93,7 +93,7 @@ logs.send({embed})
 });
 
   client.on("channelUpdate", (oldName, newName) => {
-    const logs = newName.guild.channels.find(m => m.name === "logs");
+    const logs = newName.guild.channels.find(m => m.name === "logs-douzii");
     if (!logs) return console.log("Salon Logs absent !");
     const embed = new Discord.RichEmbed()
     .setColor("#FE6F01")
@@ -103,7 +103,7 @@ logs.send({embed})
     .addField("Ancien Nom", `${oldName.name}`)
     .addField("New Nom", `${newName.name}`)
     .addField("Nombre de channels", newName.guild.channels.size)
-    .setFooter(`ID : ${newName.id} | © 🌺🍃FroGroZe🍃🌺#6893 & 🔱Road Rage France🔱#2987`)
+    .setFooter(`ID : ${newName.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
     .setTimestamp()
     logs.send({embed})
 });
@@ -137,7 +137,7 @@ logs.send({embed})
 });
 
 client.on("roleUpdate", (oldName, newName) => {
-    const logs = oldName.guild.channels.find(m => m.name === "logs");
+    const logs = oldName.guild.channels.find(m => m.name === "logs-douzii");
     if (!logs) return console.log("Salon Logs absent !");
     const embed = new Discord.RichEmbed()
     .setColor("#FE6F01")
@@ -147,7 +147,7 @@ client.on("roleUpdate", (oldName, newName) => {
     .addField("Ancien Nom", `${oldName.name}`)
     .addField("New Nom", `${newName.name}`)
     .addField("Nombre de rôles", role.guild.roles.size)
-    .setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893 & 🔱Road Rage France🔱#2987`)
+    .setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
     .setTimestamp()
     logs.send({embed})
 });
