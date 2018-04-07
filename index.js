@@ -237,23 +237,14 @@ client.on('message', message => {
       "`d!8ball(question)` : *Poser une question et le bot répond")
     message.author.send({embed});
       }
-
+    
       if(message.content.startsWith(prefix + "help")) {
           if (message.channel.type === "dm") return;
           let embed = new Discord.RichEmbed()
           .setColor('#FE0101')
           .setDescription("__**ACTIVATIONS**__ (:regional_indicator_a:)\n" +
         "`logs` : *Créer un salon* ***#logs-douzii***\n" +
-        "`Bienvenue-Bye` : *Se met dans un salon* ***#general***")
-      }
-
-      if(message.content.startsWith(prefix + "help")) {
-          if (message.channel.type === "dm") return;
-          let embed = new Discord.RichEmbed()
-          .setColor('#FE0101')
-          .setDescription("__**ACTIVATIONS**__ (:regional_indicator_a:)\n" +
-        "`logs` : *Créer un salon* ***#logs-douzii***\n" +
-        "`Bienvenue-Bye` : *Se met dans un salon* ***#general***")
+        "`Bienvenue-Bye` : *Se met dans un salon* ***#bienvenue-bye***")
       }
 
       if(message.content.startsWith(prefix + "help")) {
