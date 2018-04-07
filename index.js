@@ -18,9 +18,9 @@ client.on('ready', () =>  {
       .setDescription("J'espère que tu t'y plairas")
       .addField("Ma commande est `d!help`", "Si tu souhaites savoir mon fonctionnement")
       .addField(`Nombre de membres après l'arrivée de __${member.user.tag}__`, member.guild.memberCount)
-      .setFooter(`ID : ${member.user.id} | 🌺🍃FroGroZe🍃🌺#6893`)
+      .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
       .setTimestamp()
-member.guild.channels.find("name", "general").send({embed})
+member.guild.channels.find("name", "bienvenue-bye").send({embed})
 });
 
 client.on("guildMemberAdd", member => {
@@ -32,7 +32,7 @@ const embed = new Discord.RichEmbed()
   .setTitle("Arrivée d'un nouvel utilisateur")
   .addField("Un nouvel utilisateur vient d'arriver", `Il s'agit de [${member.user.tag}](https://discordapp.com/)`, true)
   .addField(`Nombre de membres après l'arrivée de __${member.user.tag}__`, member.guild.memberCount)
-  .setFooter(`ID : ${member.user.id} | 🌺🍃FroGroZe🍃🌺#6893`)
+  .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
   .setTimestamp()
 logs.send({embed})
 });
@@ -44,9 +44,9 @@ client.on("guildMemberRemove", member => {
     .setTitle("Départ d'un utilisateur")
     .addField("Il s'agit de", `[${member.user.tag}](https://discordapp.com/)`, true)
     .addField(`Nombre de membres après le départ de __${member.user.tag}__`, member.guild.memberCount)
-    .setFooter(`ID : ${member.user.id} | 🌺🍃FroGroZe🍃🌺#6893`)
+    .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
     .setTimestamp()
-    member.guild.channels.find("name", "general").send({embed})
+    member.guild.channels.find("name", "bienvenue-bye").send({embed})
     });
 
 client.on("guildMemberRemove", member => {
@@ -58,24 +58,25 @@ const embed = new Discord.RichEmbed()
 .setTitle("Départ d'un utilisateur")
 .addField("Il s'agit de", `[${member.user.tag}](https://discordapp.com/)`, true)
 .addField(`Nombre de membres après le départ de __${member.user.tag}__`, member.guild.memberCount)
-.setFooter(`ID : ${member.user.id} | 🌺🍃FroGroZe🍃🌺#6893`)
+.setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
 .setTimestamp()
 logs.send({embed})
 });
 
 client.on("channelCreate", channel => {
-    const logs = channel.guild.channels.find(m => m.name === "logs-douzii");
-    if (!logs) return console.log("Salon Logs absent!");
-    const embed = new Discord.RichEmbed()
-    .setColor('#FE6F01')
-    .setAuthor(client.user.tag, client.user.avatarURL)
-    .setTitle("Nouveau salon créé ! :white_check_mark:")
-    .addField("Channel créé !",`Le nom : **${channel.name}**`)
-    .addField(`Nombre de salons après l'ajout du salon **${channel.name}**`, channel.guild.channels.size)
-    .setFooter(`ID : ${channel.id} | 🌺🍃FroGroZe🍃🌺#6893`)
-    .setTimestamp()
-    logs.send({embed})
-  });
+  if(!channel.guild) return;
+  const logs = channel.guild.channels.find(m => m.name === "logs-douzii");
+  if (!logs) return console.log("Salon Logs absent!");
+  const embed = new Discord.RichEmbed()
+  .setColor('#FE6F01')
+  .setAuthor(client.user.tag, client.user.avatarURL)
+  .setTitle("Nouveau salon créé ! :white_check_mark:")
+  .addField("Channel créé !",`Le nom : **${channel.name}**`)
+  .addField(`Nombre de salons après l'ajout du salon **${channel.name}**`, channel.guild.channels.size)
+  .setFooter(`ID : ${channel.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
+  .setTimestamp()
+  logs.send({embed})
+});
 
 client.on("channelDelete", channel => {
     const logs = channel.guild.channels.find(m => m.name === "logs-douzii");
@@ -86,7 +87,7 @@ const embed = new Discord.RichEmbed()
 .setTitle("Un salon a été supprimé ! :white_check_mark:")
 .addField("Salon supprimé !",`Son nom : **${channel.name}**`)
 .addField(`Nombre de salons après la suppression du salon **${channel.name}**`, channel.guild.channels.size)
-.setFooter(`ID : ${channel.id} | 🌺🍃FroGroZe🍃🌺#6893`)
+.setFooter(`ID : ${channel.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
 .setTimestamp()
 logs.send({embed})
 });
@@ -100,7 +101,7 @@ const embed = new Discord.RichEmbed()
 .setTitle("Un rôle a été créé ! :white_check_mark:")
 .addField("Rôle créé !", `Son nom : **${role.name}**`)
 .addField(`Nombre de rôles après l'ajout du rôle **${role.name}**`, role.guild.roles.size)
-.setFooter(`ID : ${role.id} | 🌺🍃FroGroZe🍃🌺#6893`)
+.setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
 .setTimestamp()
 logs.send({embed})
 });
@@ -114,35 +115,39 @@ const embed = new Discord.RichEmbed()
 .setTitle("Un rôle a été supprimé ! :white_check_mark:")
 .addField("Rôle supprimé !", `Son nom : **${role.name}**`)
 .addField(`Nombre de rôles après la supression du rôle **${role.name}**`, role.guild.roles.size)
-.setFooter(`ID : ${role.id} | 🌺🍃FroGroZe🍃🌺#6893`)
+.setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
 .setTimestamp()
 logs.send({embed})
 });
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
+  if(!newMessage.guild) return;
     const logs = newMessage.guild.channels.find(m => m.name === "logs-douzii");
+    if (!newMessage.guild.channels.exists('name','logs-douzii')) return;
+  newMessage.guild.channels.find("name", "logs-douzii")
     if (!logs) return console.log("Salon Logs absent!");
     if(oldMessage.author.bot || oldMessage.cleanContent === newMessage.cleanContent) return;
     let embed = new Discord.RichEmbed()
     .setAuthor(newMessage.member.user.tag, newMessage.member.user.avatarURL)
     .setColor("#FE6F01")
     .setTitle("Un message a été modifié ! :white_check_mark:")
-    .addField(`Le message de ${newMessage.author.tag} a été modifié`, `**Message Avant** : ${oldMessage.cleanContent}`)
-    .addField("Message Après :", `${newMessage.cleanContent}`)
-    .setFooter(`ID : ${newMessage.member.user.id} | 🌺🍃FroGroZe🍃🌺#6893`)
+    .setDescription(`Le message de ${newMessage.author} a été modifié`)
+    .addField("Message Avant", `${oldMessage.cleanContent}`)
+    .addField("Message Après", `${newMessage.cleanContent}`)
+    .setFooter(`ID : ${newMessage.member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
     .setTimestamp()
     return logs.send({embed})
     });
 client.on("messageDelete", (message) => {
-    if (message.author.bot) return;
+  if (message.author.bot) return;
     const logs = message.guild.channels.find(m => m.name === "logs-douzii");
     if (!logs) return console.log("Salon Logs absent!");
     let embed = new Discord.RichEmbed()
     .setAuthor(message.author.tag, message.author.avatarURL)
     .setColor("#FE6F01")
     .setTitle("Un message a été supprimé ! :white_check_mark:")
-    .addField(`Le message de ${message.author.tag} a été supprimé`, `**Message Supprimé** : ${message.cleanContent}`)
-    .setFooter(`ID : ${message.author.id} | 🌺🍃FroGroZe🍃🌺#6893`)
+    .addField(`Le message de ${message.author} a été supprimé`, `**Message Supprimé** : ${message.cleanContent}`)
+    .setFooter(`ID : ${message.author.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
     .setTimestamp()
     logs.send({embed})
   });
@@ -183,12 +188,13 @@ client.on('message', message => {
         .setColor('#0BD9E8')
         .setTitle("__Voici la date actuelle__")
         .addField("Nous sommes le " + d, "Bonne journée")
-        .setFooter(`Demandé par ${message.user.tag} | 🌺🍃FroGroZe🍃🌺#6893`)
+        .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
         .setTimestamp()
             message.channel.send({embed})
     }
 
     if(message.content.startsWith(prefix + "help")){
+      if (message.channel.type === "dm") return;
         let embed = new Discord.RichEmbed()
         .setColor('#03FC03')
         .setAuthor(client.user.tag, client.user.avatarURL)
@@ -197,13 +203,14 @@ client.on('message', message => {
         .setDescription("__**DIVERS**__ : \n" +
             " `d!support` : *Te donne le serveur de mon créateur* :white_check_mark:\n" +
             " `d!invite` : *Te donne le lien pour minviter sur ton serveur* :white_check_mark:\n" +
-            "`d!report` : *Pour faire un report au developpeur*:white_check_mark\n" +
-            "`d!demande` : *Pour faire une demande au developpeur*:white_check_mark:\n")
+            "`d!report` : *Pour faire un report au developpeur ( bug, abus, etc ... )*:white_check_mark\n" +
+            "`d!demande` : *Pour faire une demande au developpeur ( ajout de commandes, modifications, etc ... )*:white_check_mark:\n")
       message.author.send({embed});
       message.reply(":point_right:help envoyé en MP:envelope_with_arrow:");
       }
 
       if(message.content.startsWith(prefix + "help")){
+          if (message.channel.type === "dm") return;
         let embed = new Discord.RichEmbed()
         .setColor('#FE6F01')
         .setDescription("__**MODERATION**__ : \n" +
@@ -217,6 +224,7 @@ client.on('message', message => {
       }
 
       if(message.content.startsWith(prefix + "help")){
+          if (message.channel.type === "dm") return;
       let embed = new Discord.RichEmbed()
       .setColor('#C3FE01')
       .setDescription("__**FUN**__ : \n" +
@@ -231,14 +239,7 @@ client.on('message', message => {
       }
 
       if(message.content.startsWith(prefix + "help")) {
-        let embed = new Discord.RichEmbed()
-        .setColor('#C301FE')
-        .setDescription("__**EXPLICATIONS**__ (:regional_indicator_e:)\n" +
-        "`logs` : Member Add, Member Remove, Channel Create, Channel Delete, Role Create, Role Delete, Message Delete, Message Update")
-      message.author.send({embed});
-      }
-
-      if(message.content.startsWith(prefix + "help")) {
+          if (message.channel.type === "dm") return;
           let embed = new Discord.RichEmbed()
           .setColor('#FE0101')
           .setDescription("__**ACTIVATIONS**__ (:regional_indicator_a:)\n" +
@@ -247,6 +248,16 @@ client.on('message', message => {
       }
 
       if(message.content.startsWith(prefix + "help")) {
+          if (message.channel.type === "dm") return;
+          let embed = new Discord.RichEmbed()
+          .setColor('#FE0101')
+          .setDescription("__**ACTIVATIONS**__ (:regional_indicator_a:)\n" +
+        "`logs` : *Créer un salon* ***#logs-douzii***\n" +
+        "`Bienvenue-Bye` : *Se met dans un salon* ***#general***")
+      }
+
+      if(message.content.startsWith(prefix + "help")) {
+          if (message.channel.type === "dm") return;
         let embed = new Discord.RichEmbed()
         .setColor('#0177FE')
         .setDescription("__**LEGENDE**__ : \n" +
@@ -264,7 +275,7 @@ client.on('message', message => {
         .setColor('#03FC03')
         .setAuthor(client.user.username, client.user.avatarURL)
         .setTitle("Invite moi")
-        .addField(":notepad_spiral: Pour m'ajouter a ton serveur ", "[[invitation]](https://discordapp.com/oauth2/authorize?client_id=419142627087089695&scope=bot&permissions=2146958591)", true)
+        .addField(":notepad_spiral: Pour m'ajouter a votre serveur ", "[Cliquez ici](https://discordapp.com/oauth2/authorize?client_id=419142627087089695&scope=bot&permissions=2146958591)", true)
         .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
         .setTimestamp()
         message.channel.send({embed})
@@ -283,18 +294,18 @@ client.on('message', message => {
         }
 
         if(message.content.startsWith(prefix + "ping")){
-        let startTime = message.createdTimestamp;
-        let endTime = new Date().getTime()
-        let embed = new Discord.RichEmbed()
-        .setAuthor(client.user.username, client.user.avatarURL)
-        .setColor("#C3FE01")
-        .setAuthor("Ping-Pong")
-        .setTitle("__Voici le ping du bot__")
-        .addField("**pong :ping_pong: " + Math.round(endTime - startTime) + " ms.**", "Excellent ping ! :v:")
-        .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
-        .setTimestamp()
-            message.channel.send({embed})
-    }
+          let startTime = message.createdTimestamp;
+          let endTime = new Date().getTime()
+          let embed = new Discord.RichEmbed()
+          .setAuthor(client.user.username, client.user.avatarURL)
+          .setColor("#C3FE01")
+          .setAuthor("Ping-Pong")
+          .setTitle("__Voici le ping du bot__")
+          .addField("**pong :ping_pong: " + Math.round(endTime - startTime) + " ms.**", "Excellent ping ! :v:")
+          .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
+          .setTimestamp()
+              message.channel.send({embed})
+      }
 
     if(message.content.startsWith(prefix + "purge")){
         let myrole = message.guild.member(client.user).hasPermission("MANAGE_MESSAGES"); //Récupère les droits nécessaires
@@ -313,7 +324,7 @@ client.on('message', message => {
             return message.reply(":warning:**La valeur que vous avez entré est invalide, merci de choisir une valeur comprise entre 2 et 100**");
         }
         message.channel.bulkDelete(suppression, true).then(ok => {
-            message.channel.send("**Suppression de " + "" + suppression + "" + " messages**")
+            message.reply("**Suppression de " + "" + suppression + "" + " messages**")
             .then(message => setTimeout(function(){message.delete()}, 1000))
             .catch(err => console.log(err));
         
@@ -361,10 +372,10 @@ client.on('message', message => {
         let thingToEcho = args.join(" ")
         let embed = new Discord.RichEmbed()
             .setDescription("Sondage")
-            .addField(thingToEcho, "Répondre avec :white_check_mark: ou :x:")
+            .addField(thingToEcho, "Répondre avec :one:(oui/choix) ou :two:(non/choix)")
             .setColor("#C3FE01")
             .setTimestamp()
-            .setFooter(`Sondage réalisé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
+            .setFooter(`Sondage réalisé par ${message.author} | © 🌺🍃FroGroZe🍃🌺#6893`)
         message.channel.send({embed})
         .then(function (message) {
             message.react("1⃣")
@@ -378,7 +389,7 @@ client.on('message', message => {
         .setColor('#03FC03')
         .setAuthor(client.user.username, client.user.avatarURL)
         .setTitle("Serveur support")
-        .addField(":notepad_spiral: Voici le serveur discord ( support ) de mon créateur ", "[[serveur support]](https://discord.gg/FR4KZrT)", true)
+        .addField(":notepad_spiral: Pour rejoindre le serveur discord ( support ) de mon créateur ", "[Cliquez ici](https://discord.gg/FR4KZrT)", true)
         .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
         .setTimestamp()
         message.channel.send({embed})
@@ -452,19 +463,21 @@ message.channel.send("", {
     }
 
         if(message.content.startsWith(prefix + "demande")) {
-
-            var d = message.content.substr(8)
-            message.channel.send("Demande envoyé!")
+          if (message.channel.type === "dm") return;
+              message.delete(message.author)
+            var d = message.content.substr(10)
+            message.reply("**Demande envoyé!**")
             
             client.users.get('307919815547551745').send(`|---------------------------------------------|\nIl y a une demande : ${d} \nPseudo de la personne : @${message.author.tag}\nSur le server : ${message.guild.name}\nDans le salon  #${message.channel.name}`)
             }
 
             if(message.content.startsWith(prefix + "report")) {
-
-                var d = message.content.substr(8)
-                message.channel.send("Report envoyé!")
+              if (message.channel.type === "dm") return;
+                  message.delete(message.author)
+                var d = message.content.substr(10)
+                message.reply("**Report envoyé!**")
                 
-                client.users.get('307919815547551745').send(`|---------------------------------------------|\nIl y a une demande : ${d} \nPseudo de la personne : @${message.author.tag}\nSur le server : ${message.guild.name}\nDans le salon  #${message.channel.name}`)
+                client.users.get('307919815547551745').send(`|---------------------------------------------|\nIl y a un report : ${d} \nPseudo de la personne : @${message.author.tag}\nSur le server : ${message.guild.name}\nDans le salon  #${message.channel.name}`)
                 }
 })
 
@@ -498,6 +511,6 @@ client.on('message', function(message) {
             .addField("Question", tte)
             .addBlankField()
             .addField("Reponse", reponse)
-        message.channel.sendEmbed(bembed)
+        message.channel.send(bembed)
     }
 })
