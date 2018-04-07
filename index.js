@@ -92,6 +92,20 @@ const embed = new Discord.RichEmbed()
 logs.send({embed})
 });
 
+client.on("channelUpdate", channel => {
+    const logs = channel.guild.channels.find(m => m.name === "logs");
+    if (!logs) return console.log("Salon Logs absent !");
+    const embed = new Discord.RichEmbed()
+    .setColor("#FE6F01")
+    .setAuthor(client.user.tag, client.user.avatarURL)
+    .setTitle("Le nom d'un channel a été modifié ! :white_check_mark:")
+    .addField("Nom de channel modifié !", `New nom : **${channel.name}**`)
+    .addField("Nombre de channels", channel.guild.channels.size)
+    .setFooter(`ID : ${channel.id} | © 🌺🍃FroGroZe🍃🌺#6893 & 🔱Road Rage France🔱#2987`)
+    .setTimestamp()
+    logs.send({embed})
+});
+
 client.on("roleCreate", role => {
     const logs = role.guild.channels.find(m => m.name === "logs-douzii");
     if (!logs) return console.log("Salon Logs absent!");
@@ -118,6 +132,20 @@ const embed = new Discord.RichEmbed()
 .setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
 .setTimestamp()
 logs.send({embed})
+});
+
+client.on("roleUpdate", role => {
+    const logs = role.guild.channels.find(m => m.name === "logs");
+    if (!logs) return console.log("Salon Logs absent !");
+    const embed = new Discord.RichEmbed()
+    .setColor("#FE6F01")
+    .setAuthor(client.user.tag, client.user.avatarURL)
+    .setTitle("Le nom d'un rôle a été modifié ! :white_check_mark:")
+    .addField("Nom de rôle modifié !", `New nom : **${role.name}**`)
+    .addField("Nombre de rôles", role.guild.roles.size)
+    .setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893 & 🔱Road Rage France🔱#2987`)
+    .setTimestamp()
+    logs.send({embed})
 });
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
