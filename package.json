@@ -4,7 +4,7 @@
   "description": "",
   "main": "douzii.js",
   "scripts": {
-    "test": "start": "node douzii.js"
+    "test": { "start": "node douzii.js" }
   },
   "author": "FroGroZe",
   "license": "ISC",
