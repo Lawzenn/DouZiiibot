@@ -4,7 +4,7 @@
   "description": "",
   "main": "douzii.js",
   "scripts": {
-    "test": "echo "Error: no test specified"&& exit l"
+    "test": "echo "Error: no test specified"&& exit l",
 "start": "node douzii.js"
   },
   "author": "FroGroZe",
