@@ -251,7 +251,7 @@ client.on('message', message => {
             " `d!kick (@user)` : *Pour kick un joueur*:white_check_mark:\n" +
             "`d!ban (@user)` : *Pour ban une personne*:white_check_mark:\n" +
             "`d!purge ( 2 à 100 )` : *Pour purge des messages*:white_check_mark:\n" +
-            "`logs ( sous activation par salon )` : *Permet de suivre les agissements des utilisateurs*:white_check_mark:\n" +
+            "`logs ( sous activation par salon )` : *Permet de suivre les agissements des utilisateurs*:white_check_mark::regional_indicator_a:\n" +
             "`d!mute` : *Permet de mute un utilisateur*:hourglass:\n" +
             "`d!afk` : *Permet de se mettre* **AFK**:hourglass:\n")
       message.author.send({embed});
@@ -268,7 +268,8 @@ client.on('message', message => {
       "`d!ping` : *Affiche le ping du bot*:white_check_mark:\n" +
       "`d!serveurinfo` : *Affiche les infos du serveur* **|| ALIASE : **`d!si`:white_check_mark:\n" +
       "`d!sondage` : *Execute un sondage*:white_check_mark:\n" +
-      "`d!8ball(question)` : *Poser une question et le bot répond")
+      "`d!8ball(question)` : *Poser une question et le bot répond\n" +
+      "`nsfw` : *Voir du porno*:white_check_mark: :regional_indicator_a:")
     message.author.send({embed});
       }
     
@@ -278,7 +279,8 @@ client.on('message', message => {
           .setColor('#FE0101')
           .setDescription("__**ACTIVATIONS**__ (:regional_indicator_a:)\n" +
         "`logs` : *Créer un salon* ***#logs-douzii***\n" +
-        "`Bienvenue-Bye` : *Se met dans un salon* ***#bienvenue-bye***")
+        "`Bienvenue-Bye` : *Se met dans un salon* ***#bienvenue-bye***\n" +
+        "`nsfw` : **Créer un salon* ***#nsfw***")
     message.author.send({embed});
       }
 
@@ -290,7 +292,7 @@ client.on('message', message => {
         ":x: = **commande non disponible**\n" +
         ":white_check_mark: = **commande disponible**\n" +
         ":hourglass: = **commande en cours de developpement**\n" +
-        ":regional_indicator_e: = **explication commandes**")
+        ":regional_indicator_a: = **activations commandes**")
         .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
         .setTimestamp()
       message.author.send({embed});
@@ -556,10 +558,10 @@ client.on('message', function(message) {
                 "https://images.pexels.com/photos/115011/cat-face-close-view-115011.jpeg?auto=compress&cs=tinysrgb&h=350"
             ];
             let reponse = (replys[Math.floor(Math.random() * replys.length)])
-            var bembed = new Discord.RichEmbed()
+            var embed = new Discord.RichEmbed()
             .setColor('#C3FE01')
             .setImage(reponse)
-        message.channel.send(bembed)
+        message.channel.send(embed)
     }
 })
 
@@ -578,15 +580,17 @@ client.on('message', function(message) {
                 "https://images.pexels.com/photos/733416/pexels-photo-733416.jpeg?auto=compress&cs=tinysrgb&h=350"
             ];
             let reponse = (replys[Math.floor(Math.random() * replys.length)])
-            var bembed = new Discord.RichEmbed()
+            var embed = new Discord.RichEmbed()
             .setColor('#C3FE01')
             .setImage(reponse)
-        message.channel.send(bembed)
+          message.channel.send({embed})
     }
 })
 
 client.on('message', function(message) {
     if(message.content.startsWith(prefix + "4k")) {
+            const nsfw = message.guild.channels.find(m => m.name === "nsfw");
+    if (!nsfw) return console.log("Salon nsfw absent!");
             var replys = [
                 "http://www.wallsexy.net/wp-content/uploads/2016/09/fonds-ecran-images-sexy-photoshop-de-femmes-nues-04-660x330.jpg",
                 "http://www.wallsexy.net/wp-content/uploads/2017/01/fonds-ecran-images-sexy-blonde-bombasse-porno-16-660x330.jpg",
@@ -600,15 +604,17 @@ client.on('message', function(message) {
                 "http://www.wallsexy.net/wp-content/uploads/2017/01/fonds-ecran-images-sexy-etudiante-qui-prefere-baiser-13-660x330.jpg"
             ];
             let reponse = (replys[Math.floor(Math.random() * replys.length)])
-            var bembed = new Discord.RichEmbed()
+            var embed = new Discord.RichEmbed()
             .setColor('#C3FE01')
             .setImage(reponse)
-        message.channel.send(bembed)
+         nsfw.send({embed})
     }
 })
 
 client.on('message', function(message) {
     if(message.content.startsWith(prefix + "ass")) {
+    const nsfw = message.guild.channels.find(m => m.name === "nsfw");
+    if (!nsfw) return console.log("Salon nsfw absent!");
             var replys = [
                 "http://www.wallsexy.net/wp-content/uploads/2017/01/fonds-ecran-images-sexy-gros-seins-de-jolies-bombasses-09-660x330.jpg",
                 "http://www.wallsexy.net/wp-content/uploads/2017/01/fonds-ecran-images-sexy-blonde-bombasse-porno-16-660x330.jpg",
@@ -622,9 +628,9 @@ client.on('message', function(message) {
                 "http://www.wallsexy.net/wp-content/uploads/2016/11/fonds-ecran-images-sexy-femmes-mature-avec-un-jolie-cul-14-660x330.jpg"
             ];
             let reponse = (replys[Math.floor(Math.random() * replys.length)])
-            var bembed = new Discord.RichEmbed()
+            var embed = new Discord.RichEmbed()
             .setColor('#C3FE01')
             .setImage(reponse)
-        message.channel.send(bembed)
+         nsfw.send({embed})
     }
 })
