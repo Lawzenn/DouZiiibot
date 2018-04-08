@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "douzii.js",
-  "scripts": {
-    "test": { "start": "node douzii.js" }
-  },
+  "scripts": { "start": "node douzii.js" },
   "author": "FroGroZe",
   "license": "ISC",
   "dependencies": {
