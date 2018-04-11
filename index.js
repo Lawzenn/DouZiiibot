@@ -263,6 +263,7 @@ client.on('message', message => {
         .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
         .setTimestamp()
       message.author.send({embed});
+      message.reply(":point_right:help envoyé en MP:envelope_with_arrow:");
       }
 
       if(message.content.startsWith(prefix + "invite")) {
