@@ -122,7 +122,7 @@ channel.send({embed})
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
   if(!newMessage.guild) return;
-    const channel = member.guild.channels.find("name", "logs-douzii") ;
+    const channel = newMessage.guild.channels.find("name", "logs-douzii") ;
     if (!newMessage.guild.channels.exists('name','logs-douzii')) return;
   newMessage.guild.channels.find("name", "logs-douzii")
   if (!channel) return;
@@ -140,7 +140,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
     });
 client.on("messageDelete", (message) => {
   if (message.author.bot) return;
-    const channel = member.guild.channels.find("name", "logs-douzii") ;
+    const channel = message.guild.channels.find("name", "logs-douzii") ;
       if (!channel) return;
     let embed = new Discord.RichEmbed()
     .setAuthor(message.author.tag, message.author.avatarURL)
