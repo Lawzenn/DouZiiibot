@@ -25,7 +25,7 @@ member.guild.channels.find("name", "bienvenue-bye").send({embed})
 
 client.on("guildMemberAdd", member => {
 const channel = member.guild.channels.find("name", "bienvenue-bye") ;
-  if (!channel) return;);
+  if (!channel) return;
 const embed = new Discord.RichEmbed()
   .setColor('#FE6F01')
   .setAuthor(member.user.tag, member.user.avatarURL)
