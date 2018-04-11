@@ -217,7 +217,7 @@ client.on('message', message => {
             " `d!kick (@user)` : *Pour kick un joueur*:white_check_mark:\n" +
             "`d!ban (@user)` : *Pour ban une personne*:white_check_mark:\n" +
             "`d!purge ( 2 à 100 )` : *Pour purge des messages*:white_check_mark:\n" +
-            "`logs ( sous activation par salon )` : *Permet de suivre les agissements des utilisateurs*:white_check_mark::regional_indicator_a:\n" +
+            "`logs ( sous activation par salon )` : *Permet de suivre les agissements des utilisateurs*:white_check_mark::regional_indicator_a::regional_indicator_e:\n" +
             "`d!mute` : *Permet de mute un utilisateur*:hourglass:\n" +
             "`d!afk` : *Permet de se mettre* **AFK**:hourglass:\n")
       message.author.send({embed});
@@ -235,7 +235,7 @@ client.on('message', message => {
       "`d!serveurinfo` : *Affiche les infos du serveur* **|| ALIASE : **`d!si`:white_check_mark:\n" +
       "`d!sondage` : *Execute un sondage*:white_check_mark:\n" +
       "`d!8ball(question)` : *Poser une question et le bot répond\n" +
-      "`nsfw` : *Voir du porno*:white_check_mark: :regional_indicator_a:")
+      "`nsfw` : *Voir du porno*:white_check_mark: :regional_indicator_a::regional_indicator_e:")
     message.author.send({embed});
       }
     
@@ -249,6 +249,16 @@ client.on('message', message => {
         "`nsfw` : **Créer un salon* ***#nsfw***")
     message.author.send({embed});
       }
+    
+    if(message.content.startsWith(prefix + "help")) {
+        if (message.channel.type === "dm") return;
+        let embed = new Discord.RichEmbed()
+        .setColor('#FE0101')
+        .setDescription("__**EXPLICATIONS**__ (:regional_indicator_a:)\n" +
+      "`logs` : *MemberAdd, MemberRemove, MessageUpdate, MessageDelete, ChannelCreate, ChannelDelete, RoleCreate, RoleDelete*\n" +
+      "`nsfw` : *4k, ass, boobs, fuck, suck, hentaiimg, hentaigif*")
+    message.author.send({embed});
+    }
 
       if(message.content.startsWith(prefix + "help")) {
           if (message.channel.type === "dm") return;
@@ -579,9 +589,7 @@ client.on('message', function(message) {
             .setImage(reponse)
          nsfw.send({embed})
     }
-})
 
-client.on('message', function(message) {
     if(message.content.startsWith(prefix + "ass")) {
     const nsfw = message.guild.channels.find(m => m.name === "nsfw");
     if (!nsfw) return console.log("Salon nsfw absent!");
@@ -596,6 +604,116 @@ client.on('message', function(message) {
                 "http://www.wallsexy.net/wp-content/uploads/2017/02/fonds-ecran-images-sexy-simony-diamond-se-fait-enculer-13-660x330.jpg",
                 "http://www.wallsexy.net/wp-content/uploads/2016/11/fonds-ecran-images-sexy-Jolie-cul-de-femmes-noires-02-660x330.jpg",
                 "http://www.wallsexy.net/wp-content/uploads/2016/11/fonds-ecran-images-sexy-femmes-mature-avec-un-jolie-cul-14-660x330.jpg"
+            ];
+            let reponse = (replys[Math.floor(Math.random() * replys.length)])
+            var embed = new Discord.RichEmbed()
+            .setColor('#C3FE01')
+            .setImage(reponse)
+         nsfw.send({embed})
+    }
+    
+        if(message.content.startsWith(prefix + "boobs")) {
+    const nsfw = message.guild.channels.find(m => m.name === "nsfw");
+    if (!nsfw) return message.channel.send("Salon nsfw introuvable!");
+            var replys = [
+                "http://www.wallsexy.net/wp-content/uploads/2017/02/fonds-ecran-images-sexy-photoshop-de-gros-seins-06b-660x330.jpg",
+                "http://www.wallsexy.net/wp-content/uploads/2017/01/fonds-ecran-images-sexy-gros-seins-de-jolies-bombasses-09-660x330.jpg",
+                "http://www.wallsexy.net/wp-content/uploads/2016/12/fonds-ecran-images-sexy-gros-seins-jeune-femme-12-660x330.jpg",
+                "http://www.wallsexy.net/wp-content/uploads/2016/11/fonds-ecran-images-sexy-gros-seins-de-salope-noire-20-660x330.jpg",
+                "http://www.wallsexy.net/wp-content/uploads/2016/08/fonds-ecran-images-sexy-gros-seins-femme-sexy-08-660x330.jpg",
+                "http://www.wallsexy.net/wp-content/uploads/2016/08/fonds-ecran-images-sexy-jeunette-avec-des-seins-parfais-14-660x330.jpg",
+                "http://www.wallsexy.net/wp-content/uploads/2016/08/fonds-ecran-images-sexy-seins-de-jolies-rousses-14-660x330.jpg",
+                "http://www.wallsexy.net/wp-content/uploads/2016/05/fonds-ecran-images-sexy-petits-seins-amateurs-19-660x330.jpg",
+                "http://www.wallsexy.net/wp-content/uploads/2016/02/anette-dawn-et-ses-jolies-seins-10-660x330.jpg",
+                "http://www.wallsexy.net/wp-content/uploads/2016/02/jolie-femme-et-gros-seins-09-660x330.jpg"
+            ];
+            let reponse = (replys[Math.floor(Math.random() * replys.length)])
+            var embed = new Discord.RichEmbed()
+            .setColor('#C3FE01')
+            .setImage(reponse)
+         nsfw.send({embed})
+    }
+
+    if(message.content.startsWith(prefix + "fuck")) {
+    const nsfw = message.guild.channels.find(m => m.name === "nsfw");
+    if (!nsfw) return message.channel.send("Salon nsfw introuvable!");
+            var replys = [
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2017/10/gifs-anim%C3%A9s-levrette.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/gif-de-levrette.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2017/10/gif-levrette.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2017/10/position-du-kamasutra-levrette.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2017/10/kamasutra-la-levrette.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/kamasutra-la-levrette.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/levrette-debout.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/levrette-exterieur.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2017/10/levrette-%C3%A0-plusieurs.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2017/10/gif-anim%C3%A9-levrette-en-couple.gif"
+            ];
+            let reponse = (replys[Math.floor(Math.random() * replys.length)])
+            var embed = new Discord.RichEmbed()
+            .setColor('#C3FE01')
+            .setImage(reponse)
+         nsfw.send({embed})
+    }
+
+    if(message.content.startsWith(prefix + "suck")) {
+    const nsfw = message.guild.channels.find(m => m.name === "nsfw");
+    if (!nsfw) return message.channel.send("Salon nsfw introuvable!");
+            var replys = [
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/gif-fellation.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/gif-anime-fellation.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/gif-ejac-faciale.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/gif-fellation-69.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/animation-fellation.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/fellation-plaisir.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/fellation-pleine-nature.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/fellation-pipe.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/faire-une-fellation.gif",
+                "https://www.rencontresanslendemain.net/wp-content/uploads/2018/01/gif-de-fellation.gif"
+            ];
+            let reponse = (replys[Math.floor(Math.random() * replys.length)])
+            var embed = new Discord.RichEmbed()
+            .setColor('#C3FE01')
+            .setImage(reponse)
+         nsfw.send({embed})
+    }
+
+    if(message.content.startsWith(prefix + "hentaiimg")) {
+    const nsfw = message.guild.channels.find(m => m.name === "nsfw");
+    if (!nsfw) return message.channel.send("Salon nsfw introuvable!");
+            var replys = [
+                "https://images.sex.com/images/pinporn/2018/03/17/300/19253871.jpg",
+                "https://images.sex.com/images/pinporn/2018/04/01/300/19315340.jpg",
+                "https://images.sex.com/images/pinporn/2018/03/25/300/19288485.jpg",
+                "https://images.sex.com/images/pinporn/2018/04/03/300/19321269.png",
+                "https://images.sex.com/images/pinporn/2018/03/26/300/19290744.jpg",
+                "https://images.sex.com/images/pinporn/2018/04/01/300/19314027.jpg",
+                "https://images.sex.com/images/pinporn/2018/03/20/300/19268305.jpg",
+                "https://images.sex.com/images/pinporn/2018/03/15/300/19248235.jpg",
+                "https://images.sex.com/images/pinporn/2018/03/18/300/19257484.jpg",
+                "https://images.sex.com/images/pinporn/2018/03/26/300/19292622.jpg"
+            ];
+            let reponse = (replys[Math.floor(Math.random() * replys.length)])
+            var embed = new Discord.RichEmbed()
+            .setColor('#C3FE01')
+            .setImage(reponse)
+         nsfw.send({embed})
+    }
+
+    if(message.content.startsWith(prefix + "hentaigif")) {
+    const nsfw = message.guild.channels.find(m => m.name === "nsfw");
+    if (!nsfw) return message.channel.send("Salon nsfw introuvable!");
+            var replys = [
+                "https://images.sex.com/images/pinporn/2018/04/11/300/19353548.gif",
+                "https://images.sex.com/images/pinporn/2018/04/02/300/19317076.gif",
+                "https://images.sex.com/images/pinporn/2018/04/05/300/19329798.gif",
+                "https://images.sex.com/images/pinporn/2018/03/18/300/19257302.gif",
+                "https://images.sex.com/images/pinporn/2018/03/17/300/19257050.gif",
+                "https://images.sex.com/images/pinporn/2018/04/05/300/19329924.gif",
+                "https://images.sex.com/images/pinporn/2018/04/06/300/19335137.gif",
+                "https://images.sex.com/images/pinporn/2018/03/13/300/19240110.gif",
+                "https://images.sex.com/images/pinporn/2018/03/17/300/19254702.gif",
+                "https://images.sex.com/images/pinporn/2018/03/12/300/19236921.gif"
             ];
             let reponse = (replys[Math.floor(Math.random() * replys.length)])
             var embed = new Discord.RichEmbed()
