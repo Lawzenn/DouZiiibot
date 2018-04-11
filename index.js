@@ -24,8 +24,8 @@ member.guild.channels.find("name", "bienvenue-bye").send({embed})
 });
 
 client.on("guildMemberAdd", member => {
-    const logs = member.guild.channels.find(m => m.name === "logs-douzii");
-    if (!logs) return console.log("Salon Logs absent!");
+const channel = member.guild.channels.find("name", "join-leave") ;
+  if (!channel) return;);
 const embed = new Discord.RichEmbed()
   .setColor('#FE6F01')
   .setAuthor(member.user.tag, member.user.avatarURL)
@@ -34,7 +34,7 @@ const embed = new Discord.RichEmbed()
   .addField(`Nombre de membres après l'arrivée de __${member.user.tag}__`, member.guild.memberCount)
   .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
   .setTimestamp()
-logs.send({embed})
+channel.send({embed})
 });
 
 client.on("guildMemberRemove", member => {
