@@ -65,7 +65,7 @@ channel.send({embed})
 
 client.on("channelCreate", channel => {
   if(!channel.guild) return;
-    const channeld = member.guild.channels.find("name", "logs-douzii") ;
+    const channeld = channel.guild.channels.find("name", "logs-douzii") ;
   if (!channel) return;
   const embed = new Discord.RichEmbed()
   .setColor('#FE6F01')
@@ -79,7 +79,7 @@ client.on("channelCreate", channel => {
 });
 
 client.on("channelDelete", channel => {
-    const channeld = member.guild.channels.find("name", "logs-douzii") ;
+    const channeld = channel.guild.channels.find("name", "logs-douzii") ;
   if (!channel) return;
 const embed = new Discord.RichEmbed()
 .setColor('#FE6F01')
@@ -93,7 +93,7 @@ channeld.send({embed})
 });
 
 client.on("roleCreate", role => {
-    const channel = member.guild.channels.find("name", "logs-douzii") ;
+    const channel = role.guild.channels.find("name", "logs-douzii") ;
   if (!channel) return;
 const embed = new Discord.RichEmbed()
 .setColor("#FE6F01")
@@ -107,7 +107,7 @@ channel.send({embed})
 });
 
 client.on("roleDelete", role => {
-    const channel = member.guild.channels.find("name", "logs-douzii") ;
+    const channel = role.guild.channels.find("name", "logs-douzii") ;
   if (!channel) return;
 const embed = new Discord.RichEmbed()
 .setColor("#FE6F01")
