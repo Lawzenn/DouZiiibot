@@ -265,7 +265,7 @@ client.on('message', message => {
       message.author.send({embed});
       }
     
-    if(message.content.startsith(prefix + "help")) {
+    if(message.content.starsWith(prefix + "help")) {
        message.reply(":point_right:help envoyé en MP:envelope_with_arrow:");
     }
 
