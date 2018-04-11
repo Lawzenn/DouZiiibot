@@ -24,7 +24,7 @@ member.guild.channels.find("name", "bienvenue-bye").send({embed})
 });
 
 client.on("guildMemberAdd", member => {
-const channel = member.guild.channels.find("name", "join-leave") ;
+const channel = member.guild.channels.find("name", "bienvenue-bye") ;
   if (!channel) return;);
 const embed = new Discord.RichEmbed()
   .setColor('#FE6F01')
@@ -50,8 +50,8 @@ client.on("guildMemberRemove", member => {
     });
 
 client.on("guildMemberRemove", member => {
-    const logs = member.guild.channels.find(m => m.name === "logs-douzii");
-    if (!logs) return console.log("Salon Logs absent!");
+    const channel = member.guild.channels.find("name", "bienvenue-bye") ;
+  if (!channel) return;
 const embed = new Discord.RichEmbed()
 .setColor('#FE6F01')
 .setAuthor(member.user.tag, member.user.avatarURL)
@@ -60,13 +60,13 @@ const embed = new Discord.RichEmbed()
 .addField(`Nombre de membres après le départ de __${member.user.tag}__`, member.guild.memberCount)
 .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
 .setTimestamp()
-logs.send({embed})
+channel.send({embed})
 });
 
 client.on("channelCreate", channel => {
   if(!channel.guild) return;
-  const logs = channel.guild.channels.find(m => m.name === "logs-douzii");
-  if (!logs) return console.log("Salon Logs absent!");
+    const channel = member.guild.channels.find("name", "logs-douzii") ;
+  if (!channel) return;
   const embed = new Discord.RichEmbed()
   .setColor('#FE6F01')
   .setAuthor(client.user.tag, client.user.avatarURL)
@@ -75,12 +75,12 @@ client.on("channelCreate", channel => {
   .addField(`Nombre de salons après l'ajout du salon **${channel.name}**`, channel.guild.channels.size)
   .setFooter(`ID : ${channel.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
   .setTimestamp()
-  logs.send({embed})
+  channel.send({embed})
 });
 
 client.on("channelDelete", channel => {
-    const logs = channel.guild.channels.find(m => m.name === "logs-douzii");
-    if (!logs) return console.log("Salon Logs absent!");
+    const channel = member.guild.channels.find("name", "logs-douzii") ;
+  if (!channel) return;
 const embed = new Discord.RichEmbed()
 .setColor('#FE6F01')
 .setAuthor(client.user.tag, client.user.avatarURL)
@@ -89,28 +89,12 @@ const embed = new Discord.RichEmbed()
 .addField(`Nombre de salons après la suppression du salon **${channel.name}**`, channel.guild.channels.size)
 .setFooter(`ID : ${channel.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
 .setTimestamp()
-logs.send({embed})
-});
-
-  client.on("channelUpdate", (oldName, newName) => {
-    const logs = newName.guild.channels.find(m => m.name === "logs-douzii");
-    if (!logs) return console.log("Salon Logs absent !");
-    const embed = new Discord.RichEmbed()
-    .setColor("#FE6F01")
-    .setAuthor(client.user.tag, client.user.avatarURL)
-    .setTitle("Le Nom d'un channel a été modifié ! :white_check_mark:")
-    .setDescription("Nom de channel modifié !")
-    .addField("Ancien Nom", `${oldName.name}`)
-    .addField("New Nom", `${newName.name}`)
-    .addField("Nombre de channels", newName.guild.channels.size)
-    .setFooter(`ID : ${newName.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-    .setTimestamp()
-    logs.send({embed})
+channel.send({embed})
 });
 
 client.on("roleCreate", role => {
-    const logs = role.guild.channels.find(m => m.name === "logs-douzii");
-    if (!logs) return console.log("Salon Logs absent!");
+    const channel = member.guild.channels.find("name", "logs-douzii") ;
+  if (!channel) return;
 const embed = new Discord.RichEmbed()
 .setColor("#FE6F01")
 .setAuthor(client.user.tag, client.user.avatarURL)
@@ -119,12 +103,12 @@ const embed = new Discord.RichEmbed()
 .addField(`Nombre de rôles après l'ajout du rôle **${role.name}**`, role.guild.roles.size)
 .setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
 .setTimestamp()
-logs.send({embed})
+channel.send({embed})
 });
 
 client.on("roleDelete", role => {
-    const logs = role.guild.channels.find(m => m.name === "logs-douzii");
-    if (!logs) return console.log("Salon Logs absent!");
+    const channel = member.guild.channels.find("name", "logs-douzii") ;
+  if (!channel) return;
 const embed = new Discord.RichEmbed()
 .setColor("#FE6F01")
 .setAuthor(client.user.tag, client.user.avatarURL)
@@ -133,32 +117,15 @@ const embed = new Discord.RichEmbed()
 .addField(`Nombre de rôles après la supression du rôle **${role.name}**`, role.guild.roles.size)
 .setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
 .setTimestamp()
-logs.send({embed})
+channel.send({embed})
 });
-
-client.on("roleUpdate", (oldName, newName) => {
-    const logs = oldName.guild.channels.find(m => m.name === "logs-douzii");
-    if (!logs) return console.log("Salon Logs absent !");
-    const embed = new Discord.RichEmbed()
-    .setColor("#FE6F01")
-    .setAuthor(client.user.tag, client.user.avatarURL)
-    .setTitle("Le nom d'un rôle a été modifié ! :white_check_mark:")
-    .setDecription("Nom de rôle modifié !")
-    .addField("Ancien Nom", `${oldName.name}`)
-    .addField("New Nom", `${newName.name}`)
-    .addField("Nombre de rôles", role.guild.roles.size)
-    .setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-    .setTimestamp()
-    logs.send({embed})
-});
-
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
   if(!newMessage.guild) return;
-    const logs = newMessage.guild.channels.find(m => m.name === "logs-douzii");
+    const channel = member.guild.channels.find("name", "logs-douzii") ;
     if (!newMessage.guild.channels.exists('name','logs-douzii')) return;
   newMessage.guild.channels.find("name", "logs-douzii")
-    if (!logs) return console.log("Salon Logs absent!");
+  if (!channel) return;
     if(oldMessage.author.bot || oldMessage.cleanContent === newMessage.cleanContent) return;
     let embed = new Discord.RichEmbed()
     .setAuthor(newMessage.member.user.tag, newMessage.member.user.avatarURL)
@@ -169,12 +136,12 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
     .addField("Message Après", `${newMessage.cleanContent}`)
     .setFooter(`ID : ${newMessage.member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
     .setTimestamp()
-    return logs.send({embed})
+    return channel.send({embed})
     });
 client.on("messageDelete", (message) => {
   if (message.author.bot) return;
-    const logs = message.guild.channels.find(m => m.name === "logs-douzii");
-    if (!logs) return console.log("Salon Logs absent!");
+    const channel = member.guild.channels.find("name", "logs-douzii") ;
+      if (!channel) return;
     let embed = new Discord.RichEmbed()
     .setAuthor(message.author.tag, message.author.avatarURL)
     .setColor("#FE6F01")
@@ -183,7 +150,7 @@ client.on("messageDelete", (message) => {
     .addField(`Message Supprimé`, `${message.cleanContent}`)
     .setFooter(`ID : ${message.author.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
     .setTimestamp()
-    logs.send({embed})
+    channel.send({embed})
   });
 
 client.on('message', message => {
