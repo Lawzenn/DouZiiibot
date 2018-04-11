@@ -65,7 +65,7 @@ channel.send({embed})
 
 client.on("channelCreate", channel => {
   if(!channel.guild) return;
-    const channel = member.guild.channels.find("name", "logs-douzii") ;
+    const channeld = member.guild.channels.find("name", "logs-douzii") ;
   if (!channel) return;
   const embed = new Discord.RichEmbed()
   .setColor('#FE6F01')
@@ -75,11 +75,11 @@ client.on("channelCreate", channel => {
   .addField(`Nombre de salons après l'ajout du salon **${channel.name}**`, channel.guild.channels.size)
   .setFooter(`ID : ${channel.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
   .setTimestamp()
-  channel.send({embed})
+  channeld.send({embed})
 });
 
 client.on("channelDelete", channel => {
-    const channel = member.guild.channels.find("name", "logs-douzii") ;
+    const channeld = member.guild.channels.find("name", "logs-douzii") ;
   if (!channel) return;
 const embed = new Discord.RichEmbed()
 .setColor('#FE6F01')
@@ -89,7 +89,7 @@ const embed = new Discord.RichEmbed()
 .addField(`Nombre de salons après la suppression du salon **${channel.name}**`, channel.guild.channels.size)
 .setFooter(`ID : ${channel.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
 .setTimestamp()
-channel.send({embed})
+channeld.send({embed})
 });
 
 client.on("roleCreate", role => {
