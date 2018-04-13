@@ -300,7 +300,7 @@ client.on('message', message => {
             if (message.channel.type === "dm") return;
             let embed = new Discord.RichEmbed()
             .setColor('#DC009A')
-            .setDescription("__**EXPLICATIONS**__ (:regional_indicator_a:)\n" +
+            .setDescription("__**EXPLICATIONS**__ (:regional_indicator_e:)\n" +
           "`logs` : *MemberAdd, MemberRemove, MessageUpdate, MessageDelete, ChannelCreate, ChannelDelete, RoleCreate, RoleDelete*\n" +
           "`nsfw` : *4k, ass, boobs, fuck, suck, hentaiimg, hentaigif*")
         message.author.send({embed});
