@@ -9,177 +9,222 @@ client.on('ready', () =>  {
      client.user.setActivity("d!help | © 🌺🍃FroGroZe🍃🌺#6893 | "+ client.guilds.size + " Serveurs, " + client.users.size + "  Utilisateurs")
   });
 
+     client.on("guildMemberAdd", member => {
+      const embed = new Discord.RichEmbed()
+        .setColor('#009114')
+        .setAuthor(member.user.tag, member.user.avatarURL)
+        .setTitle("Arrivée d'un nouvel utilisateur")
+        .addField("Un nouvel utilisateur vient d'arriver", `Il s'agit de [${member.user.tag}](https://discordapp.com/)`, true)
+        .setDescription("J'espère que tu t'y plairas")
+        .addField("Ma commande est `d!help`", "Si tu souhaites savoir mon fonctionnement")
+        .addField(`Nombre de membres après l'arrivée de __${member.user.tag}__`, member.guild.memberCount)
+        .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
+        .setTimestamp()
+  member.guild.channels.find("name", "bienvenue-bye").send({embed})
+  });
+  
   client.on("guildMemberAdd", member => {
-    const embed = new Discord.RichEmbed()
-      .setColor('#009114')
-      .setAuthor(member.user.tag, member.user.avatarURL)
-      .setTitle("Arrivée d'un nouvel utilisateur")
-      .addField("Un nouvel utilisateur vient d'arriver", `Il s'agit de [${member.user.tag}](https://discordapp.com/)`, true)
-      .setDescription("J'espère que tu t'y plairas")
-      .addField("Ma commande est `d!help`", "Si tu souhaites savoir mon fonctionnement")
-      .addField(`Nombre de membres après l'arrivée de __${member.user.tag}__`, member.guild.memberCount)
-      .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-      .setTimestamp()
-member.guild.channels.find("name", "bienvenue-bye").send({embed})
-});
-
-client.on("guildMemberAdd", member => {
-const channel = member.guild.channels.find("name", "bienvenue-bye") ;
-  if (!channel) return;
-const embed = new Discord.RichEmbed()
-  .setColor('#FE6F01')
-  .setAuthor(member.user.tag, member.user.avatarURL)
-  .setTitle("Arrivée d'un nouvel utilisateur")
-  .addField("Un nouvel utilisateur vient d'arriver", `Il s'agit de [${member.user.tag}](https://discordapp.com/)`, true)
-  .addField(`Nombre de membres après l'arrivée de __${member.user.tag}__`, member.guild.memberCount)
-  .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-  .setTimestamp()
-channel.send({embed})
-});
-
-client.on("guildMemberRemove", member => {
-    const embed = new Discord.RichEmbed()
-    .setColor('#9F0000')
+      const logs = member.guild.channels.find(m => m.name === "logs-douzii");
+      if (!logs) return console.log("Salon Logs absent!");
+  const embed = new Discord.RichEmbed()
+    .setColor('#FE6F01')
     .setAuthor(member.user.tag, member.user.avatarURL)
-    .setTitle("Départ d'un utilisateur")
-    .addField("Il s'agit de", `[${member.user.tag}](https://discordapp.com/)`, true)
-    .addField(`Nombre de membres après le départ de __${member.user.tag}__`, member.guild.memberCount)
+    .setTitle("Arrivée d'un nouvel utilisateur")
+    .addField("Un nouvel utilisateur vient d'arriver", `Il s'agit de [${member.user.tag}](https://discordapp.com/)`, true)
+    .addField(`Nombre de membres après l'arrivée de __${member.user.tag}__`, member.guild.memberCount)
     .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
     .setTimestamp()
-    member.guild.channels.find("name", "bienvenue-bye").send({embed})
-    });
-
-client.on("guildMemberRemove", member => {
-    const channel = member.guild.channels.find("name", "bienvenue-bye") ;
-  if (!channel) return;
-const embed = new Discord.RichEmbed()
-.setColor('#FE6F01')
-.setAuthor(member.user.tag, member.user.avatarURL)
-.setTitle("Départ d'un utilisateur")
-.addField("Il s'agit de", `[${member.user.tag}](https://discordapp.com/)`, true)
-.addField(`Nombre de membres après le départ de __${member.user.tag}__`, member.guild.memberCount)
-.setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-.setTimestamp()
-channel.send({embed})
-});
-
-client.on("channelCreate", channel => {
-  if(!channel.guild) return;
-    const channeld = channel.guild.channels.find("name", "logs-douzii") ;
-  if (!channel) return;
+  logs.send({embed})
+  });
+  
+  client.on("guildMemberRemove", member => {
+      const embed = new Discord.RichEmbed()
+      .setColor('#9F0000')
+      .setAuthor(member.user.tag, member.user.avatarURL)
+      .setTitle("Départ d'un utilisateur")
+      .addField("Il s'agit de", `[${member.user.tag}](https://discordapp.com/)`, true)
+      .addField(`Nombre de membres après le départ de __${member.user.tag}__`, member.guild.memberCount)
+      .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
+      .setTimestamp()
+      member.guild.channels.find("name", "bienvenue-bye").send({embed})
+      });
+  
+  client.on("guildMemberRemove", member => {
+      const logs = member.guild.channels.find(m => m.name === "logs-douzii");
+      if (!logs) return console.log("Salon Logs absent!");
+  const embed = new Discord.RichEmbed()
+  .setColor('#FE6F01')
+  .setAuthor(member.user.tag, member.user.avatarURL)
+  .setTitle("Départ d'un utilisateur")
+  .addField("Il s'agit de", `[${member.user.tag}](https://discordapp.com/)`, true)
+  .addField(`Nombre de membres après le départ de __${member.user.tag}__`, member.guild.memberCount)
+  .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
+  .setTimestamp()
+  logs.send({embed})
+  });
+  
+  client.on("channelCreate", channel => {
+    if(!channel.guild) return;
+    const logs = channel.guild.channels.find(m => m.name === "logs-douzii");
+    if (!logs) return console.log("Salon Logs absent!");
+    const embed = new Discord.RichEmbed()
+    .setColor('#FE6F01')
+    .setAuthor(client.user.tag, client.user.avatarURL)
+    .setTitle("Nouveau salon créé ! :white_check_mark:")
+    .addField("Channel créé !",`Le nom : **${channel.name}**`)
+    .addField(`Nombre de salons après l'ajout du salon **${channel.name}**`, channel.guild.channels.size)
+    .setFooter(`ID : ${channel.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
+    .setTimestamp()
+    logs.send({embed})
+  });
+  
+  client.on("channelDelete", channel => {
+      const logs = channel.guild.channels.find(m => m.name === "logs-douzii");
+      if (!logs) return console.log("Salon Logs absent!");
   const embed = new Discord.RichEmbed()
   .setColor('#FE6F01')
   .setAuthor(client.user.tag, client.user.avatarURL)
-  .setTitle("Nouveau salon créé ! :white_check_mark:")
-  .addField("Channel créé !",`Le nom : **${channel.name}**`)
-  .addField(`Nombre de salons après l'ajout du salon **${channel.name}**`, channel.guild.channels.size)
+  .setTitle("Un salon a été supprimé ! :white_check_mark:")
+  .addField("Salon supprimé !",`Son nom : **${channel.name}**`)
+  .addField(`Nombre de salons après la suppression du salon **${channel.name}**`, channel.guild.channels.size)
   .setFooter(`ID : ${channel.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
   .setTimestamp()
-  channeld.send({embed})
-});
-
-client.on("channelDelete", channel => {
-    const channeld = channel.guild.channels.find("name", "logs-douzii") ;
-  if (!channel) return;
-const embed = new Discord.RichEmbed()
-.setColor('#FE6F01')
-.setAuthor(client.user.tag, client.user.avatarURL)
-.setTitle("Un salon a été supprimé ! :white_check_mark:")
-.addField("Salon supprimé !",`Son nom : **${channel.name}**`)
-.addField(`Nombre de salons après la suppression du salon **${channel.name}**`, channel.guild.channels.size)
-.setFooter(`ID : ${channel.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-.setTimestamp()
-channeld.send({embed})
-});
-
-client.on("roleCreate", role => {
-    const channel = role.guild.channels.find("name", "logs-douzii") ;
-  if (!channel) return;
-const embed = new Discord.RichEmbed()
-.setColor("#FE6F01")
-.setAuthor(client.user.tag, client.user.avatarURL)
-.setTitle("Un rôle a été créé ! :white_check_mark:")
-.addField("Rôle créé !", `Son nom : **${role.name}**`)
-.addField(`Nombre de rôles après l'ajout du rôle **${role.name}**`, role.guild.roles.size)
-.setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-.setTimestamp()
-channel.send({embed})
-});
-
-client.on("roleDelete", role => {
-    const channel = role.guild.channels.find("name", "logs-douzii") ;
-  if (!channel) return;
-const embed = new Discord.RichEmbed()
-.setColor("#FE6F01")
-.setAuthor(client.user.tag, client.user.avatarURL)
-.setTitle("Un rôle a été supprimé ! :white_check_mark:")
-.addField("Rôle supprimé !", `Son nom : **${role.name}**`)
-.addField(`Nombre de rôles après la supression du rôle **${role.name}**`, role.guild.roles.size)
-.setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-.setTimestamp()
-channel.send({embed})
-});
-
-client.on("messageUpdate", (oldMessage, newMessage) => {
-  if(!newMessage.guild) return;
-    const channel = newMessage.guild.channels.find("name", "logs-douzii") ;
-    if (!newMessage.guild.channels.exists('name','logs-douzii')) return;
-  newMessage.guild.channels.find("name", "logs-douzii")
-  if (!channel) return;
-    if(oldMessage.author.bot || oldMessage.cleanContent === newMessage.cleanContent) return;
-    let embed = new Discord.RichEmbed()
-    .setAuthor(newMessage.member.user.tag, newMessage.member.user.avatarURL)
-    .setColor("#FE6F01")
-    .setTitle("Un message a été modifié ! :white_check_mark:")
-    .setDescription(`Le message de ${newMessage.author} a été modifié`)
-    .addField("Message Avant", `${oldMessage.cleanContent}`)
-    .addField("Message Après", `${newMessage.cleanContent}`)
-    .setFooter(`ID : ${newMessage.member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-    .setTimestamp()
-    return channel.send({embed})
-    });
-client.on("messageDelete", (message) => {
-  if (message.author.bot) return;
-    const channel = message.guild.channels.find("name", "logs-douzii") ;
-      if (!channel) return;
-    let embed = new Discord.RichEmbed()
-    .setAuthor(message.author.tag, message.author.avatarURL)
-    .setColor("#FE6F01")
-    .setTitle("Un message a été supprimé ! :white_check_mark:")
-    .setDescription(`Le message de ${message.author} a été supprimé`)
-    .addField(`Message Supprimé`, `${message.cleanContent}`)
-    .setFooter(`ID : ${message.author.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-    .setTimestamp()
-    channel.send({embed})
+  logs.send({embed})
   });
+  
+    client.on("channelUpdate", (oldName, newName) => {
+      const logs = newName.guild.channels.find(m => m.name === "logs-douzii");
+      if (!logs) return console.log("Salon Logs absent !");
+      const embed = new Discord.RichEmbed()
+      .setColor("#FE6F01")
+      .setAuthor(client.user.tag, client.user.avatarURL)
+      .setTitle("Le Nom d'un channel a été modifié ! :white_check_mark:")
+      .setDescription("Nom de channel modifié !")
+      .addField("Ancien Nom", `${oldName.name}`)
+      .addField("New Nom", `${newName.name}`)
+      .addField("Nombre de channels", newName.guild.channels.size)
+      .setFooter(`ID : ${newName.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
+      .setTimestamp()
+      logs.send({embed})
+  });
+  
+  client.on("roleCreate", role => {
+      const logs = role.guild.channels.find(m => m.name === "logs-douzii");
+      if (!logs) return console.log("Salon Logs absent!");
+  const embed = new Discord.RichEmbed()
+  .setColor("#FE6F01")
+  .setAuthor(client.user.tag, client.user.avatarURL)
+  .setTitle("Un rôle a été créé ! :white_check_mark:")
+  .addField("Rôle créé !", `Son nom : **${role.name}**`)
+  .addField(`Nombre de rôles après l'ajout du rôle **${role.name}**`, role.guild.roles.size)
+  .setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
+  .setTimestamp()
+  logs.send({embed})
+  });
+  
+  client.on("roleDelete", role => {
+      const logs = role.guild.channels.find(m => m.name === "logs-douzii");
+      if (!logs) return console.log("Salon Logs absent!");
+  const embed = new Discord.RichEmbed()
+  .setColor("#FE6F01")
+  .setAuthor(client.user.tag, client.user.avatarURL)
+  .setTitle("Un rôle a été supprimé ! :white_check_mark:")
+  .addField("Rôle supprimé !", `Son nom : **${role.name}**`)
+  .addField(`Nombre de rôles après la supression du rôle **${role.name}**`, role.guild.roles.size)
+  .setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
+  .setTimestamp()
+  logs.send({embed})
+  });
+  
+  client.on("roleUpdate", (oldName, newName) => {
+      const logs = oldName.guild.channels.find(m => m.name === "logs-douzii");
+      if (!logs) return console.log("Salon Logs absent !");
+      const embed = new Discord.RichEmbed()
+      .setColor("#FE6F01")
+      .setAuthor(client.user.tag, client.user.avatarURL)
+      .setTitle("Le nom d'un rôle a été modifié ! :white_check_mark:")
+      .setDecription("Nom de rôle modifié !")
+      .addField("Ancien Nom", `${oldName.name}`)
+      .addField("New Nom", `${newName.name}`)
+      .addField("Nombre de rôles", role.guild.roles.size)
+      .setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
+      .setTimestamp()
+      logs.send({embed})
+  });
+  
+  
+  client.on("messageUpdate", (oldMessage, newMessage) => {
+    if(!newMessage.guild) return;
+      const logs = newMessage.guild.channels.find(m => m.name === "logs-douzii");
+      if (!newMessage.guild.channels.exists('name','logs-douzii')) return;
+    newMessage.guild.channels.find("name", "logs-douzii")
+      if (!logs) return console.log("Salon Logs absent!");
+      if(oldMessage.author.bot || oldMessage.cleanContent === newMessage.cleanContent) return;
+      let embed = new Discord.RichEmbed()
+      .setAuthor(newMessage.member.user.tag, newMessage.member.user.avatarURL)
+      .setColor("#FE6F01")
+      .setTitle("Un message a été modifié ! :white_check_mark:")
+      .setDescription(`Le message de ${newMessage.author} a été modifié`)
+      .addField("Message Avant", `${oldMessage.cleanContent}`)
+      .addField("Message Après", `${newMessage.cleanContent}`)
+      .setFooter(`ID : ${newMessage.member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
+      .setTimestamp()
+      return logs.send({embed})
+      });
+  client.on("messageDelete", (message) => {
+    if (message.author.bot) return;
+      const logs = message.guild.channels.find(m => m.name === "logs-douzii");
+      if (!logs) return console.log("Salon Logs absent!");
+      let embed = new Discord.RichEmbed()
+      .setAuthor(message.author.tag, message.author.avatarURL)
+      .setColor("#FE6F01")
+      .setTitle("Un message a été supprimé ! :white_check_mark:")
+      .setDescription(`Le message de ${message.author} a été supprimé`)
+      .addField(`Message Supprimé`, `${message.cleanContent}`)
+      .setFooter(`ID : ${message.author.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
+      .setTimestamp()
+      logs.send({embed})
+    });
+
+    client.on('guildBanAdd', (guild, user)=> {
+        if(!guild) return;
+        const logs = guild.channels.find(m => m.name === "logs-douzii");
+        if (!guild.channels.exists('name','logs-douzii')) return;
+        guild.channels.find("name", "logs-douzii")
+        if (!logs) return;
+        let embed = new Discord.RichEmbed()
+        .setAuthor("Ban", user.avatarURL)
+        .setColor("#FE6F01")
+        .setTitle("Un utilisateur a été ban ! :white_check_mark:")
+        .setDescription(`Utilisateur ban : ${user}`)
+        .setThumbnail(user.avatarURL)
+        .addField("Nombre de membres après le ban", guild.memberCount)
+        .setFooter(`ID : ${user.id}`)
+        .setTimestamp()
+        logs.send({embed})
+    })
+  
+    client.on('guildBanRemove', (guild, user)=> {
+        if(!guild) return;
+        const logs = guild.channels.find(m => m.name === "logs-douzii");
+        if (!guild.channels.exists('name','logs-douzii')) return;
+        guild.channels.find("name", "logs-douzii")
+        if (!logs) return;
+        let embed = new Discord.RichEmbed()
+        .setAuthor("Unban", user.avatarURL)
+        .setColor("#FE6F01")
+        .setTitle("Un utilisateur a été unban ! :white_check_mark:")
+        .setDescription(`Utilisateur unban : ${user}`)
+        .setThumbnail(user.avatarURL)
+        .addField("Nombre de membres", guild.memberCount)
+        .setFooter(`ID : ${user.id}`)
+        .setTimestamp()
+        logs.send({embed})
+    })
 
 client.on('message', message => {
     if(message.content.startsWith(prefix + "avatar")) {
         message.channel.send(message.author.avatarURL);
-    }
-
-    if(message.content.startsWith(prefix + "ban")) {
-        var member= message.mentions.members.first();
-        // Ban
-        member.ban().then((member) => {
-        // Successmessage
-        message.channel.send(":wave: " + member.displayName + " **a été ban** :point_right: ");
-        }).catch(() => {
-        // Failmessage
-        message.channel.send(":x: **Erreur : Vous n'avez pas les permissions !**");
-        })
-    }
-
-    if(message.content.startsWith(prefix + "kick")) {
-        var member= message.mentions.members.first();
-        // Ban
-        member.kick().then((member) => {
-        // Successmessage
-        message.channel.send(":wave: " + member.displayName + " **a été kick** :point_right: ");
-        }).catch(() => {
-        // Failmessage
-        message.channel.send(":x: **Erreur : Vous n'avez pas les permissions !**");
-        })
     }
 
     if(message.content.startsWith(prefix + "date")) {
@@ -194,89 +239,86 @@ client.on('message', message => {
             message.channel.send({embed})
     }
 
-    if(message.content.startsWith(prefix + "help")){
-      if (message.channel.type === "dm") return;
-        let embed = new Discord.RichEmbed()
-        .setColor('#03FC03')
-        .setAuthor(client.user.tag, client.user.avatarURL)
-        .setTitle("__Voici la page d'aide de DouZii__:")
-        .setThumbnail(message.author.avatarURL)
-        .setDescription("__**DIVERS**__ : \n" +
-            " `d!support` : *Te donne le serveur de mon créateur* :white_check_mark:\n" +
-            " `d!invite` : *Te donne le lien pour minviter sur ton serveur* :white_check_mark:\n" +
-            "`d!report` : *Pour faire un report au developpeur ( bug, abus, etc ... )*:white_check_mark:\n" +
-            "`d!demande` : *Pour faire une demande au developpeur ( ajout de commandes, modifications, etc ... )*:white_check_mark:\n")
-      message.author.send({embed});
-      }
-
       if(message.content.startsWith(prefix + "help")){
-          if (message.channel.type === "dm") return;
-        let embed = new Discord.RichEmbed()
-        .setColor('#FE6F01')
-        .setDescription("__**MODERATION**__ : \n" +
-            " `d!kick (@user)` : *Pour kick un joueur*:white_check_mark:\n" +
-            "`d!ban (@user)` : *Pour ban une personne*:white_check_mark:\n" +
-            "`d!purge ( 2 à 100 )` : *Pour purge des messages*:white_check_mark:\n" +
-            "`logs ( sous activation par salon )` : *Permet de suivre les agissements des utilisateurs*:white_check_mark::regional_indicator_a::regional_indicator_e:\n" +
-            "`d!mute` : *Permet de mute un utilisateur*:hourglass:\n" +
-            "`d!afk` : *Permet de se mettre* **AFK**:hourglass:\n")
-      message.author.send({embed});
-      }
-
-      if(message.content.startsWith(prefix + "help")){
-          if (message.channel.type === "dm") return;
-      let embed = new Discord.RichEmbed()
-      .setColor('#C3FE01')
-      .setDescription("__**FUN**__ : \n" +
-      "`d!date` : *Te dit quel jour nous somme*:white_check_mark:\n" + 
-      "`d!avatar` : *Te donne ton avatar*:white_check_mark:\n" + 
-      "`d!userinfo(@user)` : *Affiche les infos de l'utilisateur mentionné* **|| ALIASE : **`d!ui`:white_check_mark:\n" +
-      "`d!ping` : *Affiche le ping du bot*:white_check_mark:\n" +
-      "`d!serveurinfo` : *Affiche les infos du serveur* **|| ALIASE : **`d!si`:white_check_mark:\n" +
-      "`d!sondage` : *Execute un sondage*:white_check_mark:\n" +
-      "`d!8ball(question)` : *Poser une question et le bot répond\n" +
-      "`nsfw` : *Voir du porno*:white_check_mark: :regional_indicator_a::regional_indicator_e:")
-    message.author.send({embed});
-      }
-    
-      if(message.content.startsWith(prefix + "help")) {
-          if (message.channel.type === "dm") return;
-          let embed = new Discord.RichEmbed()
-          .setColor('#FE0101')
-          .setDescription("__**ACTIVATIONS**__ (:regional_indicator_a:)\n" +
-        "`logs` : *Créer un salon* ***#logs-douzii***\n" +
-        "`Bienvenue-Bye` : *Se met dans un salon* ***#bienvenue-bye***\n" +
-        "`nsfw` : **Créer un salon* ***#nsfw***")
-    message.author.send({embed});
-      }
-    
-    if(message.content.startsWith(prefix + "help")) {
         if (message.channel.type === "dm") return;
+          let embed = new Discord.RichEmbed()
+          .setColor('#03FC03')
+          .setAuthor(client.user.tag, client.user.avatarURL)
+          .setTitle("__Voici la page d'aide de DouZii__:")
+          .setThumbnail(message.author.avatarURL)
+          .setDescription("__**DIVERS**__ : \n" +
+              " `d!support` : *Te donne le serveur de mon créateur* :white_check_mark:\n" +
+              " `d!invite` : *Te donne le lien pour minviter sur ton serveur* :white_check_mark:\n" +
+              "`d!report` : *Pour faire un report au developpeur ( bug, abus, etc ... )*:white_check_mark:\n" +
+              "`d!demande` : *Pour faire une demande au developpeur ( ajout de commandes, modifications, etc ... )*:white_check_mark:\n")
+        message.author.send({embed});
+        message.reply(":point_right:help envoyé en MP:envelope_with_arrow:");
+        }
+  
+        if(message.content.startsWith(prefix + "help")){
+            if (message.channel.type === "dm") return;
+          let embed = new Discord.RichEmbed()
+          .setColor('#FE6F01')
+          .setDescription("__**MODERATION**__ : \n" +
+              " `d!kick (@user)` : *Pour kick un joueur*:white_check_mark:\n" +
+              "`d!ban (@user)` : *Pour ban une personne*:white_check_mark:\n" +
+              "`d!purge ( 2 à 100 )` : *Pour purge des messages*:white_check_mark:\n" +
+              "`logs ( sous activation par salon )` : *Permet de suivre les agissements des utilisateurs*:white_check_mark::regional_indicator_a:\n" +
+              "`d!mute` : *Permet de mute un utilisateur*:hourglass:\n" +
+              "`d!afk` : *Permet de se mettre* **AFK**:hourglass:\n")
+        message.author.send({embed});
+        }
+  
+        if(message.content.startsWith(prefix + "help")){
+            if (message.channel.type === "dm") return;
         let embed = new Discord.RichEmbed()
-        .setColor('#FE0101')
-        .setDescription("__**EXPLICATIONS**__ (:regional_indicator_a:)\n" +
-      "`logs` : *MemberAdd, MemberRemove, MessageUpdate, MessageDelete, ChannelCreate, ChannelDelete, RoleCreate, RoleDelete*\n" +
-      "`nsfw` : *4k, ass, boobs, fuck, suck, hentaiimg, hentaigif*")
-    message.author.send({embed});
-    }
-
-      if(message.content.startsWith(prefix + "help")) {
-          if (message.channel.type === "dm") return;
-        let embed = new Discord.RichEmbed()
-        .setColor('#0177FE')
-        .setDescription("__**LEGENDE**__ : \n" +
-        ":x: = **commande non disponible**\n" +
-        ":white_check_mark: = **commande disponible**\n" +
-        ":hourglass: = **commande en cours de developpement**\n" +
-        ":regional_indicator_a: = **activations commandes**")
-        .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
-        .setTimestamp()
+        .setColor('#C3FE01')
+        .setDescription("__**FUN**__ : \n" +
+        "`d!date` : *Te dit quel jour nous somme*:white_check_mark:\n" + 
+        "`d!avatar` : *Te donne ton avatar*:white_check_mark:\n" + 
+        "`d!userinfo(@user)` : *Affiche les infos de l'utilisateur mentionné* **|| ALIASE : **`d!ui`:white_check_mark:\n" +
+        "`d!ping` : *Affiche le ping du bot*:white_check_mark:\n" +
+        "`d!serveurinfo` : *Affiche les infos du serveur* **|| ALIASE : **`d!si`:white_check_mark:\n" +
+        "`d!sondage` : *Execute un sondage*:white_check_mark:\n" +
+        "`d!8ball(question)` : *Poser une question et le bot répond\n" +
+        "`nsfw` : *Voir du porno*:white_check_mark: :regional_indicator_a:")
       message.author.send({embed});
-      }
-    
-      if(message.content.startsWith(prefix + "help")) {
-       message.reply(":point_right:help envoyé en MP:envelope_with_arrow:");
-    }
+        }
+      
+        if(message.content.startsWith(prefix + "help")) {
+            if (message.channel.type === "dm") return;
+            let embed = new Discord.RichEmbed()
+            .setColor('#FE0101')
+            .setDescription("__**ACTIVATIONS**__ (:regional_indicator_a:)\n" +
+          "`logs` : *Créer un salon* ***#logs-douzii***\n" +
+          "`Bienvenue-Bye` : *Se met dans un salon* ***#bienvenue-bye***\n" +
+          "`nsfw` : **Créer un salon* ***#nsfw***")
+      message.author.send({embed});
+        }
+
+        if(message.content.startsWith(prefix + "help")) {
+            if (message.channel.type === "dm") return;
+            let embed = new Discord.RichEmbed()
+            .setColor('#DC009A')
+            .setDescription("__**EXPLICATIONS**__ (:regional_indicator_a:)\n" +
+          "`logs` : *MemberAdd, MemberRemove, MessageUpdate, MessageDelete, ChannelCreate, ChannelDelete, RoleCreate, RoleDelete*\n" +
+          "`nsfw` : *4k, ass, boobs, fuck, suck, hentaiimg, hentaigif*")
+        message.author.send({embed});
+        }
+  
+        if(message.content.startsWith(prefix + "help")) {
+            if (message.channel.type === "dm") return;
+          let embed = new Discord.RichEmbed()
+          .setColor('#0177FE')
+          .setDescription("__**LEGENDE**__ : \n" +
+          ":x: = **commande non disponible**\n" +
+          ":white_check_mark: = **commande disponible**\n" +
+          ":hourglass: = **commande en cours de developpement**\n" +
+          ":regional_indicator_a: = **activations commandes**")
+          .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
+          .setTimestamp()
+        message.author.send({embed});
+        }
 
       if(message.content.startsWith(prefix + "invite")) {
         let embed = new Discord.RichEmbed()
@@ -314,6 +356,23 @@ client.on('message', message => {
           .setTimestamp()
               message.channel.send({embed})
       }
+    
+            if(message.content.startsWith(prefix + "botinfo") || message.content.startsWith(prefix + "bi")) {
+            let embed = new Discord.RichEmbed()
+            .setAuthor(client.user.username, client.user.avatarURL)
+            .setColor('#C3FE01')
+            .setTitle("__Voici les infos sur le bot__")
+            .addField(":crown: Createur", `🌺🍃FroGroZe🍃🌺#6893`)
+            .addField(":speech_balloon:Channels", client.channels.size, true)
+            .addField(":abcd:Username", client.user.username, true)
+            .addField(":1234:Discriminator", client.user.discriminator, true)
+            .addField(":clock5: Uptime", Math.round(client.uptime / (1000 * 60 * 60)) + " hours, " + Math.round(client.uptime / (1000 * 60)) % 60 + " minutes, and " + Math.round(client.uptime / 1000) % 60 + " seconds", true)
+            .addField(":file_cabinet:Nombre de serveurs", client.guilds.size, true)
+            .addField(":bust_in_silhouette: Nombre d'utilisateurs", client.users.size, true)
+            .setTimestamp()
+            .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
+            message.channel.send({embed})
+        }
 
     if(message.content.startsWith(prefix + "purge")){
         let myrole = message.guild.member(client.user).hasPermission("MANAGE_MESSAGES"); //Récupère les droits nécessaires
@@ -721,4 +780,73 @@ client.on('message', function(message) {
             .setImage(reponse)
          nsfw.send({embed})
     }
+    
+        if(message.content.startsWith(prefix + "kiss")) {
+        var kissMember = message.mentions.members.first();
+        if(!kissMember) return message.reply("Veuillez mentionner un utilisateur")
+        var replys = [
+            "http://31.media.tumblr.com/d5a4c33ad15fa1731206900121f32c9c/tumblr_mn665qkDFW1spck1jo1_500.gif",
+            "http://25.media.tumblr.com/0315131fb2ff8bdff4d069f0163dd7ad/tumblr_mu8r3mdffM1soop01o1_500.gif",
+            "http://66.media.tumblr.com/f6632f17b9fc08173dcd1a28c21d93c2/tumblr_o7gwsuMhoU1v4w9s5o1_500.gif",
+            "http://25.media.tumblr.com/bf2ceadc97e66a8a31c6311a3a79de81/tumblr_mukq8cnJHJ1spb1clo1_500.gif",
+            "http://24.media.tumblr.com/7329aab37cbd7e65a7e13490701b1642/tumblr_n6p2wcYvTp1tdgu8lo1_500.gif",
+            "http://37.media.tumblr.com/d8216d88aff781626015ade99ce15958/tumblr_mi0ag1Ebig1rarypbo1_500.gif",
+            "http://37.media.tumblr.com/3704e9d1b9e7254238a959e3cd1898ce/tumblr_mu5mjhSxDn1s6ft4zo1_500.gif",
+            "http://37.media.tumblr.com/e440b37451b6491144f211e440a7659e/tumblr_n2dz6yAI261tswgwpo1_500.gif",
+            "http://37.media.tumblr.com/d22c1072863cb63a367e9a9a3e5a4f15/tumblr_n4iwxxS5nR1svgr39o1_500.gif",
+            "http://37.media.tumblr.com/12d34f591e723c573be5e60a17c434eb/tumblr_mv4wcmbW7i1slpj5xo1_500.gif"
+        ]
+        let reponse = (replys[Math.floor(Math.random() * replys.length)])
+        var embed = new Discord.RichEmbed()
+        .setColor('#C3FE01')
+        .setDescription(`${message.author} a embrassé(e) ${kissMember}`)
+        .setImage(reponse)
+     message.channel.send({embed})
+    }
 })
+
+  client.on('message', message => {
+    let command = message.content.split(" ")[0];
+    const args = message.content.slice(prefix.length).split(/ +/);
+    command = args.shift().toLowerCase();
+
+    if (command === "kick") {
+        if(!message.member.hasPermission('KICK_MEMBERS')) {
+            return message.reply("Tu n'as pas les permissions !").catch(console.error);
+        }
+        if(message.mentions.users.size === 0) {
+            return message.reply("Merci de mentionner un utilisateur.").catch(console.error);
+        }
+        let kickMember = message.guild.member(message.mentions.users.first());
+        if(!kickMember) {
+            return message.reply("Cet utilisateur est introuvable ou impossible a kick")
+        }
+        if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) {
+            return message.reply("Je n'ai pas la permission KICK_MEMBERS pour faire ceci").catch(console.error);
+        }
+        kickMember.kick().then(member => {
+            message.channel.send(` :wave: ${member.user.username} a été kick :point_right:`).catch(console.error);
+
+        }).catch(console.error);
+    }
+
+    if (command === "ban") {
+        if(!message.member.hasPermission('BAN_MEMBERS')) {
+            return message.reply("Tu n'as pas les permissions !").catch(console.error);
+        }
+        if(message.mentions.users.size === 0) {
+            return message.reply("Merci de mentionner un utilisateur.").catch(console.error);
+        }
+        let banMember = message.guild.member(message.mentions.users.first());
+        if(!banMember) {
+            return message.reply("Cet utilisateur est introuvable ou impossible a ban")
+        }
+        if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
+            return message.reply("Je n'ai pas la permission BAN_MEMBERS pour faire ceci").catch(console.error);
+        }
+        banMember.ban().then(member => {
+            message.channel.send(` :wave: ${member.user.username} a été ban :point_right:`).catch(console.error);
+
+        }).catch(console.error);
+    }
+  })
