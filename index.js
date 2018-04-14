@@ -10,6 +10,8 @@ client.on('ready', () =>  {
   });
 
      client.on("guildMemberAdd", member => {
+      const bvn = member.guild.channels.find(m => m.name === "bienvenue-bye");
+      if (!bvn) return;
       const embed = new Discord.RichEmbed()
         .setColor('#009114')
         .setAuthor(member.user.tag, member.user.avatarURL)
@@ -20,12 +22,12 @@ client.on('ready', () =>  {
         .addField(`Nombre de membres après l'arrivée de __${member.user.tag}__`, member.guild.memberCount)
         .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
         .setTimestamp()
-  member.guild.channels.find("name", "bienvenue-bye").send({embed})
+  bvn.send({embed})
   });
   
   client.on("guildMemberAdd", member => {
       const logs = member.guild.channels.find(m => m.name === "logs-douzii");
-      if (!logs) return console.log("Salon Logs absent!");
+      if (!logs) return;
   const embed = new Discord.RichEmbed()
     .setColor('#FE6F01')
     .setAuthor(member.user.tag, member.user.avatarURL)
@@ -38,6 +40,8 @@ client.on('ready', () =>  {
   });
   
   client.on("guildMemberRemove", member => {
+      const bye = member.guild.channels.find(m => m.name === "bienvenue-bye");
+      if(!bye) return;
       const embed = new Discord.RichEmbed()
       .setColor('#9F0000')
       .setAuthor(member.user.tag, member.user.avatarURL)
@@ -46,12 +50,12 @@ client.on('ready', () =>  {
       .addField(`Nombre de membres après le départ de __${member.user.tag}__`, member.guild.memberCount)
       .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
       .setTimestamp()
-      member.guild.channels.find("name", "bienvenue-bye").send({embed})
+      bye.send({embed})
       });
   
   client.on("guildMemberRemove", member => {
       const logs = member.guild.channels.find(m => m.name === "logs-douzii");
-      if (!logs) return console.log("Salon Logs absent!");
+      if (!logs) return;
   const embed = new Discord.RichEmbed()
   .setColor('#FE6F01')
   .setAuthor(member.user.tag, member.user.avatarURL)
@@ -66,7 +70,7 @@ client.on('ready', () =>  {
   client.on("channelCreate", channel => {
     if(!channel.guild) return;
     const logs = channel.guild.channels.find(m => m.name === "logs-douzii");
-    if (!logs) return console.log("Salon Logs absent!");
+    if (!logs) return;
     const embed = new Discord.RichEmbed()
     .setColor('#FE6F01')
     .setAuthor(client.user.tag, client.user.avatarURL)
@@ -80,7 +84,7 @@ client.on('ready', () =>  {
   
   client.on("channelDelete", channel => {
       const logs = channel.guild.channels.find(m => m.name === "logs-douzii");
-      if (!logs) return console.log("Salon Logs absent!");
+      if (!logs) return;
   const embed = new Discord.RichEmbed()
   .setColor('#FE6F01')
   .setAuthor(client.user.tag, client.user.avatarURL)
@@ -94,7 +98,7 @@ client.on('ready', () =>  {
   
     client.on("channelUpdate", (oldName, newName) => {
       const logs = newName.guild.channels.find(m => m.name === "logs-douzii");
-      if (!logs) return console.log("Salon Logs absent !");
+      if (!logs) return;
       const embed = new Discord.RichEmbed()
       .setColor("#FE6F01")
       .setAuthor(client.user.tag, client.user.avatarURL)
@@ -110,7 +114,7 @@ client.on('ready', () =>  {
   
   client.on("roleCreate", role => {
       const logs = role.guild.channels.find(m => m.name === "logs-douzii");
-      if (!logs) return console.log("Salon Logs absent!");
+      if (!logs) return;
   const embed = new Discord.RichEmbed()
   .setColor("#FE6F01")
   .setAuthor(client.user.tag, client.user.avatarURL)
@@ -124,7 +128,7 @@ client.on('ready', () =>  {
   
   client.on("roleDelete", role => {
       const logs = role.guild.channels.find(m => m.name === "logs-douzii");
-      if (!logs) return console.log("Salon Logs absent!");
+      if (!logs) return;
   const embed = new Discord.RichEmbed()
   .setColor("#FE6F01")
   .setAuthor(client.user.tag, client.user.avatarURL)
@@ -138,7 +142,7 @@ client.on('ready', () =>  {
   
   client.on("roleUpdate", (oldName, newName) => {
       const logs = oldName.guild.channels.find(m => m.name === "logs-douzii");
-      if (!logs) return console.log("Salon Logs absent !");
+      if (!logs) return;
       const embed = new Discord.RichEmbed()
       .setColor("#FE6F01")
       .setAuthor(client.user.tag, client.user.avatarURL)
@@ -252,7 +256,6 @@ client.on('message', message => {
               "`d!report` : *Pour faire un report au developpeur ( bug, abus, etc ... )*:white_check_mark:\n" +
               "`d!demande` : *Pour faire une demande au developpeur ( ajout de commandes, modifications, etc ... )*:white_check_mark:\n")
         message.author.send({embed});
-        message.reply(":point_right:help envoyé en MP:envelope_with_arrow:");
         }
   
         if(message.content.startsWith(prefix + "help")){
@@ -318,6 +321,7 @@ client.on('message', message => {
           .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
           .setTimestamp()
         message.author.send({embed});
+            message.reply(":point_right:help envoyé en MP:envelope_with_arrow:");
         }
 
       if(message.content.startsWith(prefix + "invite")) {
@@ -343,19 +347,19 @@ client.on('message', message => {
           }
         }
 
-        if(message.content.startsWith(prefix + "ping")){
-          let startTime = message.createdTimestamp;
-          let endTime = new Date().getTime()
-          let embed = new Discord.RichEmbed()
-          .setAuthor(client.user.username, client.user.avatarURL)
-          .setColor("#C3FE01")
-          .setAuthor("Ping-Pong")
-          .setTitle("__Voici le ping du bot__")
-          .addField("**pong :ping_pong: " + Math.round(endTime - startTime) + " ms.**", "Excellent ping ! :v:")
-          .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
-          .setTimestamp()
-              message.channel.send({embed})
-      }
+          if(message.content.startsWith(prefix + "ping")){
+            let startTime = Date.now();
+            let embed = new Discord.RichEmbed()
+            .setAuthor(client.user.username, client.user.avatarURL)
+            .setColor("#C3FE01")
+            .setAuthor("Ping-Pong")
+            .setTitle("__Voici le ping du bot__")
+            .addField("Ping local:", `**:ping_pong: Ping = ${Math.round(Date.now() - startTime)} ms**`, true)
+            .addField("API:", `**:ping_pong: Ping = ${Math.round(client.ping).toFixed(0)} ms**`, true)
+            .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
+            .setTimestamp()
+                message.channel.send({embed})
+        }
     
             if(message.content.startsWith(prefix + "botinfo") || message.content.startsWith(prefix + "bi")) {
             let embed = new Discord.RichEmbed()
