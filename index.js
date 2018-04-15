@@ -221,7 +221,8 @@ client.on('message', message => {
             " `d!support` : *Te donne le serveur de mon créateur* :white_check_mark:\n" +
             " `d!invite` : *Te donne le lien pour minviter sur ton serveur* :white_check_mark:\n" +
             "`d!report` : *Pour faire un report au developpeur ( bug, abus, etc ... )*:white_check_mark:\n" +
-            "`d!demande` : *Pour faire une demande au developpeur ( ajout de commandes, modifications, etc ... )*:white_check_mark:\n")
+            "`d!demande` : *Pour faire une demande au developpeur ( ajout de commandes, modifications, etc ... )*:white_check_mark:\n" +
+            "`d!avis` : *Pour donner un avis sur le bot* :white_check_mark")
       message.author.send({embed});
       }
 
@@ -233,7 +234,7 @@ client.on('message', message => {
             " `d!kick (@user)` : *Pour kick un joueur*:white_check_mark:\n" +
             "`d!ban (@user)` : *Pour ban une personne*:white_check_mark:\n" +
             "`d!purge ( 2 à 100 )` : *Pour purge des messages*:white_check_mark:\n" +
-            "`logs ( sous activation par salon )` : *Permet de suivre les agissements des utilisateurs*:white_check_mark::regional_indicator_a:\n" +
+            "`logs ( sous activation par salon )` : *Permet de suivre les agissements des utilisateurs*:white_check_mark::regional_indicator_a::regional_indicator_e:\n" +
             "`d!mute` : *Permet de mute un utilisateur*:hourglass:\n" +
             "`d!afk` : *Permet de se mettre* **AFK**:hourglass:\n")
       message.author.send({embed});
@@ -249,9 +250,11 @@ client.on('message', message => {
       "`d!userinfo(@user)` : *Affiche les infos de l'utilisateur mentionné* **|| ALIASE : **`d!ui`:white_check_mark:\n" +
       "`d!ping` : *Affiche le ping du bot*:white_check_mark:\n" +
       "`d!serveurinfo` : *Affiche les infos du serveur* **|| ALIASE : **`d!si`:white_check_mark:\n" +
+      "`d!botinfo` : *Pour voir les infos sur le bot* **|| ALIASE : **`d!bi` :white_check_mark:\n" +
       "`d!sondage` : *Execute un sondage*:white_check_mark:\n" +
       "`d!8ball(question)` : *Poser une question et le bot répond\n" +
-      "`nsfw` : *Voir du porno*:white_check_mark: :regional_indicator_a:")
+      "`images aléatoires` : *Send plusieurs type d'images aléatoirement* :white_check_mark: :regional_indicator_e:\n" +
+      "`nsfw` : *Voir du porno*:white_check_mark: :regional_indicator_a: :regional_indicator_e:")
     message.author.send({embed});
       }
     
@@ -272,7 +275,8 @@ client.on('message', message => {
           .setColor('#DC009A')
           .setDescription("__**EXPLICATIONS**__ (:regional_indicator_e:)\n" +
         "`logs` : *MemberAdd, MemberRemove, MessageUpdate, MessageDelete, ChannelCreate, ChannelDelete, RoleCreate, RoleDelete*\n" +
-        "`nsfw` : *4k, ass, boobs, fuck, suck, hentaiimg, hentaigif*")
+        "`nsfw` : *4k, ass, boobs, fuck, suck, hentaiimg, hentaigif*\n" +
+        "`images aléatoires` : *d!kiss (@user), d!punch (@user), d!slap (@user), d!hug(@user), d!bang (@user)*")
       message.author.send({embed});
       }
 
@@ -518,6 +522,15 @@ message.channel.send("", {
               message.reply("**Report envoyé!**")
               
               client.users.get('307919815547551745').send(`|---------------------------------------------|\nIl y a un report : ${d} \nPseudo de la personne : @${message.author.tag}\nSur le server : ${message.guild.name}\nDans le salon  #${message.channel.name}`)
+              }
+    
+         if(message.content.startsWith(prefix + "avis")) {
+            if (message.channel.type === "dm") return;
+                message.delete(message.author)
+              var d = message.content.substr(10)
+              message.reply("**Avis envoyé!**")
+              
+              client.users.get('307919815547551745').send(`|---------------------------------------------|\nIl y a un avis : ${d} \nPseudo de la personne : @${message.author.tag}\nSur le server : ${message.guild.name}\nDans le salon  #${message.channel.name}`)
               }
 })
 
