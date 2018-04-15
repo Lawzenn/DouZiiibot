@@ -180,7 +180,7 @@ client.on("messageDelete", (message) => {
     const logs = message.guild.channels.find(m => m.name === "logs-douzii");
     if (!logs) return;
     let embed = new Discord.RichEmbed()
-    .setAuthor(message.author.tag, message.author.avatarURL)
+    .setAuthor(message.member.user.tag, message.member.user.avatarURL)
     .setColor("#FE6F01")
     .setTitle("Un message a été supprimé ! :white_check_mark:")
     .setDescription(`Le message de ${message.author} a été supprimé`)
