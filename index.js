@@ -589,39 +589,6 @@ client.on('message', function(message) {
 })
 
 client.on('message', function(message) {
-if(message.content.startsWith(prefix + "vcs")) {
-    const vcs = message.guild.channels.filter(m => m.name === "vcs-douzii");
-    if (!vcs) return message.reply("Il faut créer un channel **#vcs-douzii** pour pouvoir faire fonctionner le vcs");
-    var vcsmsg = message.content.substr('6')
-    message.delete(message.author);
-
-    var replys = [
-        '#01FEDC', 
-        '#FE0101',
-        '#FE6F01',
-        '#FEF601',
-        '#6FFE01',
-        '#1201FE',
-        '#7F01FE',
-        '#FE01C3',
-        '#0166FE',
-        '#FE0177'
-    ];
-
-    let reponse = (replys[Math.floor(Math.random() * replys.length)])
-    var embed = new Discord.RichEmbed()
-    .setColor(reponse)
-    .setAuthor("DouZii - VCS", client.user.avatarURL)
-    .addField("Serveur", message.guild.name, true)
-    .addField("Utilisateur", message.author + "**" + message.author.discriminator + "**", true)
-    .addField("Message", vcsmsg)
-    .setFooter("VCS")
-    .setTimestamp()
-    vcs.toString({embed})
-    }
-})
-
-client.on('message', function(message) {
   if(message.content.startsWith(prefix + "cat")) {
           var replys = [
               "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&h=350",
