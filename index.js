@@ -96,22 +96,6 @@ const embed = new Discord.RichEmbed()
 logs.send({embed})
 });
 
-  client.on("channelUpdate", (oldName, newName) => {
-    const logs = newName.guild.channels.find(m => m.name === "logs-douzii");
-    if (!logs) return;
-    const embed = new Discord.RichEmbed()
-    .setColor("#FE6F01")
-    .setAuthor(client.user.tag, client.user.avatarURL)
-    .setTitle("Le Nom d'un channel a été modifié ! :white_check_mark:")
-    .setDescription("Nom de channel modifié !")
-    .addField("Ancien Nom", `${oldName.name}`)
-    .addField("New Nom", `${newName.name}`)
-    .addField("Nombre de channels", newName.guild.channels.size)
-    .setFooter(`ID : ${newName.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-    .setTimestamp()
-    logs.send({embed})
-});
-
 client.on("roleCreate", role => {
     const logs = role.guild.channels.find(m => m.name === "logs-douzii");
     if (!logs) return;
@@ -139,23 +123,6 @@ const embed = new Discord.RichEmbed()
 .setTimestamp()
 logs.send({embed})
 });
-
-client.on("roleUpdate", (oldName, newName) => {
-    const logs = oldName.guild.channels.find(m => m.name === "logs-douzii");
-    if (!logs) return;
-    const embed = new Discord.RichEmbed()
-    .setColor("#FE6F01")
-    .setAuthor(client.user.tag, client.user.avatarURL)
-    .setTitle("Le nom d'un rôle a été modifié ! :white_check_mark:")
-    .setDecription("Nom de rôle modifié !")
-    .addField("Ancien Nom", `${oldName.name}`)
-    .addField("New Nom", `${newName.name}`)
-    .addField("Nombre de rôles", role.guild.roles.size)
-    .setFooter(`ID : ${role.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-    .setTimestamp()
-    logs.send({embed})
-});
-
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
   if(!newMessage.guild) return;
