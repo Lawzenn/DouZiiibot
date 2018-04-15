@@ -417,7 +417,7 @@ client.on('message', message => {
 
   if (message.content.startsWith( prefix + "say")) {
       if(message.author.id == "307919815547551745"){
-      var msg = message.content.substr('4')
+      var msg = message.content.substr('6')
       message.delete(message.author);
       message.channel.send(msg);
   }
