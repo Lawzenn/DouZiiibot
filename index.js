@@ -222,7 +222,7 @@ client.on('message', message => {
             " `d!invite` : *Te donne le lien pour minviter sur ton serveur* :white_check_mark:\n" +
             "`d!report` : *Pour faire un report au developpeur ( bug, abus, etc ... )*:white_check_mark:\n" +
             "`d!demande` : *Pour faire une demande au developpeur ( ajout de commandes, modifications, etc ... )*:white_check_mark:\n" +
-            "`d!avis` : *Pour donner un avis sur le bot* :white_check_mark")
+            "`d!avis` : *Pour donner un avis sur le bot* :white_check_mark:")
       message.author.send({embed});
       }
 
@@ -252,7 +252,7 @@ client.on('message', message => {
       "`d!serveurinfo` : *Affiche les infos du serveur* **|| ALIASE : **`d!si`:white_check_mark:\n" +
       "`d!botinfo` : *Pour voir les infos sur le bot* **|| ALIASE : **`d!bi` :white_check_mark:\n" +
       "`d!sondage` : *Execute un sondage*:white_check_mark:\n" +
-      "`d!8ball(question)` : *Poser une question et le bot répond\n" +
+      "`d!8ball(question)` : *Poser une question et le bot répond*\n" +
       "`images aléatoires` : *Send plusieurs type d'images aléatoirement* :white_check_mark: :regional_indicator_e:\n" +
       "`nsfw` : *Voir du porno*:white_check_mark: :regional_indicator_a: :regional_indicator_e:")
     message.author.send({embed});
@@ -265,7 +265,7 @@ client.on('message', message => {
           .setDescription("__**ACTIVATIONS**__ (:regional_indicator_a:)\n" +
         "`logs` : *Créer un salon* ***#logs-douzii***\n" +
         "`Bienvenue-Bye` : *Se met dans un salon* ***#bienvenue-bye***\n" +
-        "`nsfw` : **Créer un salon* ***#nsfw***")
+        "`nsfw` : *Créer un salon* ***#nsfw***")
     message.author.send({embed});
       }
 
@@ -276,7 +276,7 @@ client.on('message', message => {
           .setDescription("__**EXPLICATIONS**__ (:regional_indicator_e:)\n" +
         "`logs` : *MemberAdd, MemberRemove, MessageUpdate, MessageDelete, ChannelCreate, ChannelDelete, RoleCreate, RoleDelete*\n" +
         "`nsfw` : *4k, ass, boobs, fuck, suck, hentaiimg, hentaigif*\n" +
-        "`images aléatoires` : *d!kiss (@user), d!punch (@user), d!slap (@user), d!hug(@user), d!bang (@user)*")
+        "`images aléatoires` : *d!cat, d!dog, d!kiss (@user), d!punch (@user), d!slap (@user), d!hug(@user), d!bang (@user)*")
       message.author.send({embed});
       }
 
@@ -288,7 +288,8 @@ client.on('message', message => {
         ":x: = **commande non disponible**\n" +
         ":white_check_mark: = **commande disponible**\n" +
         ":hourglass: = **commande en cours de developpement**\n" +
-        ":regional_indicator_a: = **activations commandes**")
+        ":regional_indicator_a: = **activations commandes**\n" +
+        ":regional_indicator_e: = **explications commandes**")
         .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
         .setTimestamp()
       message.author.send({embed});
