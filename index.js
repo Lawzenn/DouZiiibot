@@ -252,7 +252,7 @@ client.on('message', message => {
       "`d!serveurinfo` : *Affiche les infos du serveur* **|| ALIASE : **`d!si`:white_check_mark:\n" +
       "`d!botinfo` : *Pour voir les infos sur le bot* **|| ALIASE : **`d!bi` :white_check_mark:\n" +
       "`d!sondage` : *Execute un sondage*:white_check_mark:\n" +
-      "`d!8ball(question)` : *Poser une question et le bot répond*\n" +
+      "`d!8ball(question)` : *Poser une question et le bot répond*:white_check_mark: \n" +
       "`images aléatoires` : *Send plusieurs type d'images aléatoirement* :white_check_mark: :regional_indicator_e:\n" +
       "`nsfw` : *Voir du porno*:white_check_mark: :regional_indicator_a: :regional_indicator_e:")
     message.author.send({embed});
