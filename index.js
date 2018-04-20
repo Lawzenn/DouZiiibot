@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 const client = new Discord.Client()
-client.login("NDE5MTQyNjI3MDg3MDg5Njk1.Dbt_RQ.Uv7AAk-96a9gZd8Fa02ybqXBrPs")
+client.login(process.env.TOKEN)
 
 var prefix = "d!";
 
