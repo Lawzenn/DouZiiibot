@@ -2,8 +2,8 @@
   "name": "douzii",
   "version": "1.0.0",
   "description": "",
-  "main": "douzii.js",
-  "scripts": { "start": "node douzii.js" },
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
   "author": "FroGroZe",
   "license": "ISC",
   "dependencies": {
