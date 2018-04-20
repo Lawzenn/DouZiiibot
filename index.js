@@ -428,6 +428,45 @@ client.on('message', message => {
       }).catch(function() {
       });
   }
+    
+      if(message.content.startsWith(prefix + "vcs")) {
+     message.delete();
+     var vcsc = client.channels.findAll('name', 'vcs-douzii');
+     var vcsc2 = message.guild.channels.find('name', 'vcs-douzii');
+     if(!vcsc2) {
+         message.guild.channelCreate('vcs-douzii')
+         return message.reply("Le salon `vcs-douzii` n'éxistait pas, je l'ai donc créé")
+     }
+     vcsc.forEach(channel => {
+         message.delete();
+    
+        
+            var replys = [
+                '#01FEDC', 
+                '#FE0101',
+                '#FE6F01',
+                '#FEF601',
+                '#6FFE01',
+                '#1201FE',
+                '#7F01FE',
+                '#FE01C3',
+                '#0166FE',
+                '#FE0177'
+            ];
+        
+            let reponse = (replys[Math.floor(Math.random() * replys.length)])
+            var vcsmsg = message.content.substr(6)
+            var embed = new Discord.RichEmbed()
+            .setColor(reponse)
+            .setAuthor("DouZii - VCS", client.user.avatarURL)
+            .addField("Serveur", message.guild.name, true)
+            .addField("Utilisateur", message.author + "**#" + message.author.discriminator + "**", true)
+            .addField("Message", vcsmsg)
+            .setFooter("VCS")
+            .setTimestamp()
+        channel.send(embed)
+            })
+        }
 
   if(message.content.startsWith(prefix + "support")) {
       let embed = new Discord.RichEmbed()
