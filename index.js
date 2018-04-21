@@ -236,7 +236,9 @@ client.on('message', message => {
             "`d!purge ( 2 à 100 )` : *Pour purge des messages*:white_check_mark:\n" +
             "`logs ( sous activation par salon )` : *Permet de suivre les agissements des utilisateurs*:white_check_mark::regional_indicator_a::regional_indicator_e:\n" +
             "`d!mute` : *Permet de mute un utilisateur*:hourglass:\n" +
-            "`d!afk` : *Permet de se mettre* **AFK**:hourglass:\n")
+            "`d!afk` : *Permet de se mettre* **AFK**:hourglass:\n" +
+            "`d!createrole [nom-du-role-à-créer]` : *Permet de créer un role* **||ALIASE :** `d!cr` **||**:white_check_mark:\n" +
+            "`d!createchannel [nom-du-channel-à-créer]` : *Permet de créer un channel* **||ALIASE :** `d!cc` **||**:white_check_mark:\n")
       message.author.send({embed});
       }
 
@@ -249,12 +251,13 @@ client.on('message', message => {
       "`d!avatar` : *Te donne ton avatar*:white_check_mark:\n" + 
       "`d!userinfo(@user)` : *Affiche les infos de l'utilisateur mentionné* **|| ALIASE : **`d!ui`:white_check_mark:\n" +
       "`d!ping` : *Affiche le ping du bot*:white_check_mark:\n" +
-      "`d!serveurinfo` : *Affiche les infos du serveur* **|| ALIASE : **`d!si`:white_check_mark:\n" +
-      "`d!botinfo` : *Pour voir les infos sur le bot* **|| ALIASE : **`d!bi` :white_check_mark:\n" +
+      "`d!serveurinfo` : *Affiche les infos du serveur* **|| ALIASE :**`d!si` **||**:white_check_mark:\n" +
+      "`d!botinfo` : *Pour voir les infos sur le bot* **|| ALIASE : **`d!bi` **||**:white_check_mark:\n" +
       "`d!sondage` : *Execute un sondage*:white_check_mark:\n" +
       "`d!8ball(question)` : *Poser une question et le bot répond*:white_check_mark: \n" +
       "`images aléatoires` : *Send plusieurs type d'images aléatoirement* :white_check_mark: :regional_indicator_e:\n" +
-      "`nsfw` : *Voir du porno*:white_check_mark: :regional_indicator_a: :regional_indicator_e:")
+      "`nsfw` : *Voir du porno*:white_check_mark: :regional_indicator_a: :regional_indicator_e:\n" +
+      "`d!vcs [message]` : *Envoie un message VCS*:white_check_mark: :regional_indicator_a: :regional_indicator_e:\n")
     message.author.send({embed});
       }
     
@@ -265,7 +268,8 @@ client.on('message', message => {
           .setDescription("__**ACTIVATIONS**__ (:regional_indicator_a:)\n" +
         "`logs` : *Créer un salon* ***#logs-douzii***\n" +
         "`Bienvenue-Bye` : *Se met dans un salon* ***#bienvenue-bye***\n" +
-        "`nsfw` : *Créer un salon* ***#nsfw***")
+        "`nsfw` : *Créer un salon* ***#nsfw***\n" +
+        "`d!vcs [message]` : *Créer un salon* ***#vcs-douzii***\n")
     message.author.send({embed});
       }
 
@@ -276,7 +280,8 @@ client.on('message', message => {
           .setDescription("__**EXPLICATIONS**__ (:regional_indicator_e:)\n" +
         "`logs` : *MemberAdd, MemberRemove, MessageUpdate, MessageDelete, ChannelCreate, ChannelDelete, RoleCreate, RoleDelete*\n" +
         "`nsfw` : *4k, ass, boobs, fuck, suck, hentaiimg, hentaigif*\n" +
-        "`images aléatoires` : *d!cat, d!dog, d!kiss (@user), d!punch (@user), d!slap (@user), d!hug(@user), d!bang (@user)*")
+        "`images aléatoires` : *d!cat, d!dog, d!kiss (@user), d!punch (@user), d!slap (@user), d!hug(@user), d!bang (@user)*\n" +
+        "`d!vcs [message]` : *Le vcs est une fonction inter-serveur, ce qui veut dire que quand vous envoyez un message **VCS**, le message sera reçu dans tout les serveurs où le salon ***#vcs-douzii*** sera créé\n")
       message.author.send({embed});
       }
 
@@ -507,32 +512,96 @@ message.channel.send("", {
 });
   }
 
-      if(message.content.startsWith(prefix + "demande")) {
-        if (message.channel.type === "dm") return;
-            message.delete(message.author)
-          var d = message.content.substr(10)
-          message.reply("**Demande envoyé!**")
-          
-          client.users.get('307919815547551745').send(`|---------------------------------------------|\nIl y a une demande : ${d} \nPseudo de la personne : @${message.author.tag}\nSur le server : ${message.guild.name}\nDans le salon  #${message.channel.name}`)
-          }
+              if(message.content.startsWith(prefix + "demande")) {
+                if (message.channel.type === "dm") return;
+                message.delete(message.author)
+                const mp = client.users.get("307919815547551745")
+                const d = message.content.substr(10)
+                if(!d) return message.reply("Veuillez entrer un text");
+                let embed = new Discord.RichEmbed()
+                .setAuthor(message.member.user.tag, message.author.avatarURL)
+                .setDescription("Il y a une demande")
+                .addField("Demande", `${d}`)
+                .addField("Pseudo de la personne", `${message.author.tag}`)
+                .addField("Serveur", `${message.guild.name}`)
+                .addField("Channel", `${message.channel.name}`)
+                .setThumbnail(message.author.avatarURL)
+                .setFooter(`Demande de ${message.author.tag}`)
+                .setTimestamp()
+                mp.send(embed)
+            }
 
-          if(message.content.startsWith(prefix + "report")) {
-            if (message.channel.type === "dm") return;
+            if(message.content.startsWith(prefix + "demande")) {
+                message.reply("Demande envoyée")
+            }
+
+            if(message.content.startsWith(prefix + "mpd")) {
+                if(message.author.id == "307919815547551745"){
+                    if(message.channel.guild){
+                var mpMember = message.mentions.members.first();
+                if(!mpMember) return message.reply("Veuillez mentionner un utilisateur");
+                message.reply(`Message bien envoyé à ${mpMember}`)
+                        message.delete(message.author)
+                        const mp = client.users.get(mpMember)
+                        const d = message.content.substr(28)
+                        if (!d) return message.reply("Veuillez entrer un text");
+                        let embed = new Discord.RichEmbed()
+                        .setColor('#408AA4')
+                        .setAuthor(message.member.user.tag, message.member.user.avatarURL)
+                        .setDescription("Réponse a la demande envoyée")
+                        .addField("Reponse", d)
+                        .setFooter("Merci d'avoir fait pars de ta demade a mon créateur")
+                        .setTimestamp()
+                        message.mentions.members.first().send(embed)
+            }
+                    }
+                }
+
+              if(message.content.startsWith(prefix + "report")) {
+                if (message.channel.type === "dm") return;
                 message.delete(message.author)
-              var d = message.content.substr(10)
-              message.reply("**Report envoyé!**")
-              
-              client.users.get('307919815547551745').send(`|---------------------------------------------|\nIl y a un report : ${d} \nPseudo de la personne : @${message.author.tag}\nSur le server : ${message.guild.name}\nDans le salon  #${message.channel.name}`)
-              }
+                const mp = client.users.get("307919815547551745")
+                const d = message.content.substr(10)
+                if(!d) return message.reply("Veuillez entrer un text");
+                let embed = new Discord.RichEmbed()
+                .setAuthor(message.member.user.tag, message.author.avatarURL)
+                .setDescription("Il y a un report")
+                .addField("Report", `${d}`)
+                .addField("Pseudo de la personne", `${message.author.tag}`)
+                .addField("Serveur", `${message.guild.name}`)
+                .addField("Channel", `${message.channel.name}`)
+                .setThumbnail(message.author.avatarURL)
+                .setFooter(`Report de ${message.author.tag}`)
+                .setTimestamp()
+                mp.send(embed)
+            }
+
+            if(message.content.startsWith(prefix + "report")) {
+                message.reply("Report envoyé")
+            }
     
-         if(message.content.startsWith(prefix + "avis")) {
-            if (message.channel.type === "dm") return;
+                  if(message.content.startsWith(prefix + "avis")) {
+                if (message.channel.type === "dm") return;
                 message.delete(message.author)
-              var d = message.content.substr(10)
-              message.reply("**Avis envoyé!**")
-              
-              client.users.get('307919815547551745').send(`|---------------------------------------------|\nIl y a un avis : ${d} \nPseudo de la personne : @${message.author.tag}\nSur le server : ${message.guild.name}\nDans le salon  #${message.channel.name}`)
-              }
+                const mp = client.users.get("307919815547551745")
+                const d = message.content.substr(10)
+                if(!d) return message.reply("Veuillez entrer un text");
+                let embed = new Discord.RichEmbed()
+                .setAuthor(message.member.user.tag, message.author.avatarURL)
+                .setDescription("Il y a un avis")
+                .addField("Report", `${d}`)
+                .addField("Pseudo de la personne", `${message.author.tag}`)
+                .addField("Serveur", `${message.guild.name}`)
+                .addField("Channel", `${message.channel.name}`)
+                .setThumbnail(message.author.avatarURL)
+                .setFooter(`Report de ${message.author.tag}`)
+                .setTimestamp()
+                mp.send(embed)
+            }
+
+            if(message.content.startsWith(prefix + "report")) {
+                message.reply("Report envoyé")
+            }
 })
 
 client.on('message', function(message) {
@@ -568,6 +637,32 @@ client.on('message', function(message) {
       message.channel.send(bembed)
   }
 })
+
+client.on('message', function(message) {
+    if(message.content.startsWith(prefix + "info")) {
+        if (message.author.id == "307919815547551745") return;
+        let argson = message.content.split(" ").slice(1);
+        let infomsg = argson.join(" ")
+        if (!message.guild.channels.find("name", "infos-douzii")) return message.reply("Erreur: le channel `vcs-douzii` est introuvable");
+        if(message.channel.name !== "infos-douzii") return message.reply("Commande a effectuer dans `infos-douzii`");
+        if(!infomsg) return message.reply("Merci d'envoyer un message à envoyer dans la globalité des discords");
+
+        message.delete(message.author);
+    
+        var replys = [
+            '#FE0177'
+        ];
+    
+        let reponse = (replys[Math.floor(Math.random() * replys.length)])
+        var embed = new Discord.RichEmbed()
+        .setColor(reponse)
+        .setAuthor("DouZii - INFO", client.user.avatarURL)
+        .addField("Info", infomsg)
+        .setFooter("INFO")
+        .setTimestamp()
+        client.channels.findAll('name', 'infos-douzii').map(channel => channel.send(embed))
+        }
+    })
 
 client.on('message', function(message) {
     if(message.content.startsWith(prefix + "vcs")) {
@@ -933,11 +1028,7 @@ if(message.content.startsWith(prefix + "hug")) {
 })
 
 client.on('message', message => {
-  let command = message.content.split(" ")[0];
-  const args = message.content.slice(prefix.length).split(/ +/);
-  command = args.shift().toLowerCase();
-
-  if (command === "kick") {
+  if (message.content.startsWith(prefix + "kick")) {
       if(!message.member.hasPermission('KICK_MEMBERS')) {
           return message.reply("Tu n'as pas les permissions !").catch(console.error);
       }
@@ -957,7 +1048,7 @@ client.on('message', message => {
       }).catch(console.error);
   }
 
-  if (command === "ban") {
+  if (message.content.startsWith(prefix + "ban")) {
       if(!message.member.hasPermission('BAN_MEMBERS')) {
           return message.reply("Tu n'as pas les permissions !").catch(console.error);
       }
@@ -976,4 +1067,32 @@ client.on('message', message => {
 
       }).catch(console.error);
   }
+    
+        if(message.content.startsWith(prefix + "createchannel") || message.content.startsWith(prefix + "cc")){
+            message.delete(message.author)
+            let argson = message.content.split(" ").slice(1);
+            let namechannel = argson.join(" ")
+                if(!message.member.hasPermission("MANAGE_CHANNELS")) {
+                    return message.reply("Tu n'as pas les permisions !").catch(console.error);
+                }
+                if(!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) {
+                    return message.reply("Je n'ai pas les permissions !")
+                }
+                message.guild.createChannel(namechannel)
+                return message.reply(`Le channel ${namechannel} a bien été créé`)
+            }
+    
+    if(message.content.startsWith(prefix + "createrole") || message.content.startsWith(prefix + "cr")) {
+    message.delete(message.author)
+    let argson = message.content.split(" ").slice(1);
+    let namerole = argson.join(" ")
+        if(!message.member.hasPermission("MANAGE_ROLES")) {
+            return message.reply("Tu n'as pas les permisions !").catch(console.error);
+        }
+        if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) {
+            return message.reply("Je n'ai pas les permissions !")
+        }
+        message.guild.createRole({name: namerole,})
+        return message.reply(`Le role ${namerole} a bien été créé`)
+    }
 })
