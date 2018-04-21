@@ -571,13 +571,12 @@ client.on('message', function(message) {
 
 client.on('message', function(message) {
     if(message.content.startsWith(prefix + "vcs")) {
+                message.delete(message.author);
         let argson = message.content.split(" ").slice(1);
         let vcsmsg = argson.join(" ")
         if (!message.guild.channels.find("name", "vcs-douzii")) return message.reply("Erreur: le channel `vcs-douzii` est introuvable");
         if(message.channel.name !== "vcs-douzii") return message.reply("Commande a effectuer dans `vcs-douzii`");
         if(!vcsmsg) return message.reply("Merci d'envoyer un message à envoyer dans la globalité des discords");
-
-        message.delete(message.author);
     
         var replys = [
             '#01FEDC', 
