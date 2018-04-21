@@ -596,7 +596,7 @@ client.on('message', function(message) {
         .setColor(reponse)
         .setAuthor("DouZii - VCS", client.user.avatarURL)
         .addField("Serveur", message.guild.name, true)
-        .addField("Utilisateur", message.author + "**#" + message.author.discriminator + "**", true)
+        .addField("Utilisateur", message.author.tag, true)
         .addField("Message", vcsmsg)
         .setFooter("VCS")
         .setTimestamp()
