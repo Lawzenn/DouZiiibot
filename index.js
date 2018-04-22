@@ -269,7 +269,8 @@ client.on('message', message => {
         "`logs` : *Créer un salon* ***#logs-douzii***\n" +
         "`Bienvenue-Bye` : *Se met dans un salon* ***#bienvenue-bye***\n" +
         "`nsfw` : *Créer un salon* ***#nsfw***\n" +
-        "`d!vcs [message]` : *Créer un salon* ***#vcs-douzii***\n")
+        "`d!vcs [message]` : *Créer un salon* ***#vcs-douzii***\n" + 
+        "`info` : *Créer un salon* ***#infos-douzii***\n")
     message.author.send({embed});
       }
 
@@ -281,7 +282,8 @@ client.on('message', message => {
         "`logs` : *MemberAdd, MemberRemove, MessageUpdate, MessageDelete, ChannelCreate, ChannelDelete, RoleCreate, RoleDelete*\n" +
         "`nsfw` : *4k, ass, boobs, fuck, suck, hentaiimg, hentaigif*\n" +
         "`images aléatoires` : *d!cat, d!dog, d!kiss (@user), d!punch (@user), d!slap (@user), d!hug(@user), d!bang (@user)*\n" +
-        "`d!vcs [message]` : *Le vcs est une fonction inter-serveur, ce qui veut dire que quand vous envoyez un message **VCS**, le message sera reçu dans tout les serveurs où le salon ***#vcs-douzii*** sera créé\n")
+        "`d!vcs [message]` : *Le vcs est une fonction inter-serveur, ce qui veut dire que quand vous envoyez un message **VCS**, le message sera reçu dans tout les serveurs où le salon ***#vcs-douzii*** sera créé\n" +
+        "`info` : *Cette fonction permet d'avoir les nouveautés de douzii, un message sera envoyé dans le salon approprié ( expliqué dans la partie ACTIVATION )\n")
       message.author.send({embed});
       }
 
