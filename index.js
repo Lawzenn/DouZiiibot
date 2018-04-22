@@ -238,7 +238,9 @@ client.on('message', message => {
             "`d!mute` : *Permet de mute un utilisateur*:hourglass:\n" +
             "`d!afk` : *Permet de se mettre* **AFK**:hourglass:\n" +
             "`d!createrole [nom-du-role-à-créer]` : *Permet de créer un role* **||ALIASE :** `d!cr` **||**:white_check_mark:\n" +
-            "`d!createchannel [nom-du-channel-à-créer]` : *Permet de créer un channel* **||ALIASE :** `d!cc` **||**:white_check_mark:\n")
+            "`d!createchannel [nom-du-channel-à-créer]` : *Permet de créer un channel* **||ALIASE :** `d!cc` **||**:white_check_mark:\n" +
+            "`d!giverole [@user] [nom-du-role]` : *Permet d'ajouter un rôle à un utilisateur* **||ALIASE :** `d!gr` **||**:white_check_mark:\n" +
+            "`d!removerole [@user] [nom-du-role]` : *Permet de retirer un rôle à un utilisateur* **||ALIASE :** `d!rr` **||**:white_check_mark:\n")
       message.author.send({embed});
       }
 
@@ -1097,4 +1099,36 @@ client.on('message', message => {
         message.guild.createRole({name: namerole,})
         return message.reply(`Le role ${namerole} a bien été créé`)
     }
+    
+        if(message.content.startsWith(prefix + "giverole") || message.content.startsWith(prefix + "gr")) {
+        message.delete(message.author)
+        let membergiverole = message.mentions.members.first()
+        if(!membergiverole) return message.reply("Veuillez mentionner un utilisateur");
+        let namerole = message.mentions.roles.first();
+        if(!namerole) return message.reply("Veuillez mentionner un role")
+            if(!message.member.hasPermission("MANAGE_ROLES")) {
+                return message.reply("Tu n'as pas les permisions !").catch(console.error);
+            }
+            if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) {
+                return message.reply("Je n'ai pas les permissions !")
+            }
+            membergiverole.addRole(namerole)
+            return message.reply(`Le role ${namerole} a bien été add a ${membergiverole}`)
+        }
+
+        if(message.content.startsWith(prefix + "removerole") || message.content.startsWith(prefix + "rr")) {
+            message.delete(message.author)
+            let memberremoverole = message.mentions.members.first()
+            if(!memberremoverole) return message.reply("Veuillez mentionner un utilisateur");
+            let namerole = message.mentions.roles.first();
+            if(!namerole) return message.reply("Veuillez mentionner un role")
+                if(!message.member.hasPermission("MANAGE_ROLES")) {
+                    return message.reply("Tu n'as pas les permisions !").catch(console.error);
+                }
+                if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) {
+                    return message.reply("Je n'ai pas les permissions !")
+                }
+                memberremoverole.removeRole(namerole)
+                return message.reply(`Le role ${namerole} a bien été enlevé a ${memberremoverole}`)
+            }
 })
