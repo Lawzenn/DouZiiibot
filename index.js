@@ -641,7 +641,7 @@ client.on('message', function(message) {
 client.on('message', function(message) {
     if(message.content.startsWith(prefix + "info")) {
         message.delete();
-        if (message.author.id == "307919815547551745") return;
+        if (message.author.id == "307919815547551745") {
         let argson = message.content.split(" ").slice(1);
         let infomsg = argson.join(" ")
         if (!message.guild.channels.find("name", "infos-douzii")) return message.reply("Erreur: le channel `infos-douzii` est introuvable");
@@ -660,6 +660,7 @@ client.on('message', function(message) {
         .setFooter("INFO")
         .setTimestamp()
         client.channels.findAll('name', 'infos-douzii').map(channel => channel.send(embed))
+            }
         }
     })
 
