@@ -640,14 +640,13 @@ client.on('message', function(message) {
 
 client.on('message', function(message) {
     if(message.content.startsWith(prefix + "info")) {
+        message.delete();
         if (message.author.id == "307919815547551745") return;
         let argson = message.content.split(" ").slice(1);
         let infomsg = argson.join(" ")
-        if (!message.guild.channels.find("name", "infos-douzii")) return message.reply("Erreur: le channel `vcs-douzii` est introuvable");
+        if (!message.guild.channels.find("name", "infos-douzii")) return message.reply("Erreur: le channel `infos-douzii` est introuvable");
         if(message.channel.name !== "infos-douzii") return message.reply("Commande a effectuer dans `infos-douzii`");
-        if(!infomsg) return message.reply("Merci d'envoyer un message à envoyer dans la globalité des discords");
-
-        message.delete(message.author);
+        if(!infomsg) return message.reply("Merci de mettre un text");
     
         var replys = [
             '#FE0177'
