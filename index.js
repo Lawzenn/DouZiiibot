@@ -537,7 +537,7 @@ message.channel.send("", {
                 message.reply("Demande envoyée")
             }
 
-            if(message.content.startsWith(prefix + "mpd")) {
+            if(message.content.startsWith(prefix + "mp")) {
                 if(message.author.id == "307919815547551745"){
                     if(message.channel.guild){
                 var mpMember = message.mentions.members.first();
@@ -550,7 +550,7 @@ message.channel.send("", {
                         let embed = new Discord.RichEmbed()
                         .setColor('#408AA4')
                         .setAuthor(message.member.user.tag, message.member.user.avatarURL)
-                        .setDescription("Réponse a la demande envoyée")
+                        .setDescription("Réponse du créateur")
                         .addField("Reponse", d)
                         .setFooter("Merci d'avoir fait pars de ta demade a mon créateur")
                         .setTimestamp()
