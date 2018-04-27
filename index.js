@@ -240,7 +240,10 @@ client.on('message', message => {
             "`d!createrole [nom-du-role-à-créer]` : *Permet de créer un role* **||ALIASE :** `d!cr` **||**:white_check_mark:\n" +
             "`d!createchannel [nom-du-channel-à-créer]` : *Permet de créer un channel* **||ALIASE :** `d!cc` **||**:white_check_mark:\n" +
             "`d!giverole [@user] [nom-du-role]` : *Permet d'ajouter un rôle à un utilisateur* **||ALIASE :** `d!gr` **||**:white_check_mark:\n" +
-            "`d!removerole [@user] [nom-du-role]` : *Permet de retirer un rôle à un utilisateur* **||ALIASE :** `d!rr` **||**:white_check_mark:\n")
+            "`d!removerole [@user] [nom-du-role]` : *Permet de retirer un rôle à un utilisateur* **||ALIASE :** `d!rr` **||**:white_check_mark:\n" +
+            "`d!mute [@user]` : *Permet de mute un utilisateur*:white_check_mark:\n" +
+            "`d!tempmute [@user] [temps]` : *Permet de mute un utilisateur temporairement ( en millisecondes )*:white_check_mark:\n" +
+            "`d!unmute [@user]` : *Permet de unmute un utilisateur*:white_check_mark:\n")
       message.author.send({embed});
       }
 
@@ -1131,4 +1134,121 @@ client.on('message', message => {
                 memberremoverole.removeRole(namerole)
                 return message.reply(`Le role ${namerole} a bien été enlevé a ${memberremoverole}`)
             }
+    
+                if(message.content.startsWith(prefix + "tempmute") || message.content.startsWith(prefix + "tm")) {
+                let messageArray = message.content.split(" ");
+            let args = messageArray.slice(1);
+            let member_mods = message.member.hasPermission("ADMINISTRATOR")
+            let toMute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+        
+            if(!member_mods) return message.channel.send(message.author + " Tu n'as pas les permissions requises ! :warning:");
+            if(!toMute) return message.channel.send(message.author + " Veuillez mentionner un utilisateur !");
+            if(toMute.hasPermission("MANAGE_MESSAGES")) return message.channel.send(message.author + "Cet utilisateur est impossible a mute");
+        
+            let muteR = message.guild.roles.find(`name`, "Muted");
+        
+        
+        
+            if(!muteR){
+                try {
+        
+                    muteR = message.guild.createRole({
+                        name: "Muted",
+                        color: "#161616",
+                        permission: []
+                    })
+        
+                    message.guild.channels.forEach(async (channel, id) => {
+                        channel.overwritePermissions(muteR, {
+                            SEND_MESSAGES: false,
+                            SEND_TTS_MESSAGES: false,
+                            ADD_REACTIONS: false,
+                            SPEAK: false
+                        });
+                    });
+        
+                }catch(e){
+                    console.log(e.stack);
+                }
+            }
+        
+            
+        
+        
+        
+            let muteT = args[1];
+            if(!muteT) return message.channel.send(message.author + ' Veuillez mettre un temps de mute !');
+        
+        
+            (toMute.addRole(muteR.id));
+            message.delete();
+            message.channel.send(`${toMute} a été mute pendant ${ms(ms(muteT))}.`);
+            toMute.send(":mute: Vous avez été mute sur le serveur **" + message.guild.name + "**")
+        
+            setTimeout(function(){
+                toMute.removeRole(muteR.id);
+                message.channel.send(`${toMute} viens d'être unmute !`)
+                toMute.send("Vous avez été unmute sur **" + message.guild.name + "**")
+            }, ms(muteT));
+        }
+
+        if(message.content.startsWith(prefix + "mute")) {
+            let messageArray = message.content.split(" ");
+            let args = messageArray.slice(1);
+            let member_mods = message.member.hasPermission("ADMINISTRATOR")
+            let toMute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+        
+            if(!member_mods) return message.channel.send(message.author + " Tu n'as pas les permissions requises ! :warning:");
+            if(!toMute) return message.channel.send(message.author + " Veuillez mentionner un utilisateur !");
+            if(toMute.hasPermission("MANAGE_MESSAGES")) return message.channel.send(message.author + "Cet utilisateur est impossible a mute");
+        
+            let muteR = message.guild.roles.find(`name`, "Muted");
+        
+        
+        
+            if(!muteR){
+                try {
+        
+                    muteR = message.guild.createRole({
+                        name: "Muted",
+                        color: "#161616",
+                        permission: []
+                    })
+        
+                    message.guild.channels.forEach(async (channel, id) => {
+                        channel.overwritePermissions(muteR, {
+                            SEND_MESSAGES: false,
+                            SEND_TTS_MESSAGES: false,
+                            ADD_REACTIONS: false,
+                            SPEAK: false
+                        });
+                    });
+        
+                }catch(e){
+                    console.log(e.stack);
+                }
+            }
+        
+            (toMute.addRole(muteR.id));
+            message.delete();
+            message.channel.send(`${toMute} a été mute.`);
+            toMute.send(":mute: Vous avez été mute sur le serveur **" + message.guild.name + "**")
+        }
+
+        if(message.content.startsWith(prefix + "unmute")) {
+            if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Vous devez avoir la permissions *ADMINISTRATOR* pour pouvoir exécuter cette commande")
+        
+          let toUnmute = message.guild.member(message.mentions.users.first()) || message.guild.member.get(args[0]);
+          if (!toUnmute) return message.reply("Veuillez mentionner un utilisateur");
+        
+          let role = message.guild.roles.find(r => r.name === "Muted");
+          
+        
+          if(!role || !toUnmute.roles.has(role.id)) return message.channel.send("Cet utilisateur n'est pas mute");
+        
+          toUnmute.removeRole(role)
+          message.reply(`${toUnmute} a bien été mute !`)
+        
+          return;
+        }
 })
