@@ -359,7 +359,7 @@ client.on('message', message => {
           .addField(":clock5: Uptime", Math.round(client.uptime / (1000 * 60 * 60)) + " hours, " + Math.round(client.uptime / (1000 * 60)) % 60 + " minutes, and " + Math.round(client.uptime / 1000) % 60 + " seconds", true)
           .addField(":file_cabinet:Nombre de serveurs", client.guilds.size, true)
           .addField(":bust_in_silhouette: Nombre d'utilisateurs", client.users.size, true)
-          .addField(":ab:Noms des serveurs où le bot est présent", `${client.guilds.map(g => `${g.name} | **${g.memberCount}** membres\n`) }`)
+          .addField(":ab:Noms des serveurs où le bot est présent", client.guilds.map(r => r.name + ` | **${r.memberCount}** membres`))
           .setTimestamp()
           .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
           message.channel.send({embed})
@@ -455,6 +455,11 @@ client.on('message', message => {
 
   if (message.content.startsWith(prefix + "userinfo") || message.content.startsWith(prefix + "ui")){
       let user = message.mentions.users.first() ? message.mentions.users.first() : message.author
+      if(user.bot == true){
+        var checkbot = "Oui"
+      } else {
+        var checkbot = "Non"
+      }
 let member = message.guild.member(user);
 let roles = [];
 if (member.roles.size > 0) {
@@ -482,36 +487,40 @@ let embed = {
       url: (user.avatarURL !== null) ? user.avatarURL : "https://maxcdn.icons8.com/Share/icon/Logos//discord_logo1600.png"
   },
   fields: [{
-      name: "Utilisateur",
+      name: ":bust_in_silhouette:Pseudo",
       value: user.username + "#" + user.discriminator,
       inline: true
   }, {
-      name: "ID",
+      name: ":id:ID",
       value: user.id,
       inline: true
   }, {
-      name: "Nickname",
+      name: ":abcd:Pseudo sur le serveur",
       value: (member.nickname !== null) ? member.nickname : user.username,
       inline: true
   }, {
-      name: "Jeux",
+      name: ":video_game:Jeux",
       value: "Joue a : " + game,
       inline: true
   }, {
-      name: "Status",
+      name: ":radio_button:Status",
       value: (user.presence !== null && user.presence.status !== null) ? user.presence.status : "Offline",
       inline: true
   }, {
-      name: "Rejoins Le",
-      value: member.joinedAt.toString(),
+      name: ":inbox_tray:Rejoins Le",
+      value: moment.utc(message.guild.createdAt).format("dddd Do MMMM YYYY, HH:mm:ss"),
       inline: true
   }, {
-      name: "Compte Crée Le",
-      value: user.createdAt,
+      name: ":gear:Compte Crée Le",
+      value: moment.utc(message.guild.createdAt).format("dddd Do MMMM YYYY, HH:mm:ss"),
       inline: true
   }, {
-      name: "Roles (" + ttt + ")",
+      name: ":globe_with_meridians:Roles (" + ttt + ")",
       value: wato,
+      inline: true
+  }, {
+      name: ":robot:Est-ce un bot ?",
+      value: checkbot,
       inline: true
   }]
 }
@@ -1137,6 +1146,7 @@ client.on('message', message => {
             }
     
                 if(message.content.startsWith(prefix + "tempmute") || message.content.startsWith(prefix + "tm")) {
+                              if (message.channel.type === "dm") return;
                 let messageArray = message.content.split(" ");
             let args = messageArray.slice(1);
             let member_mods = message.member.hasPermission("ADMINISTRATOR")
@@ -1253,3 +1263,60 @@ client.on('message', message => {
           return;
         }
 })
+
+//Système de musique
+bot.on('message', message => {
+    if(message.content === prefix + "play"){
+function play(connection, message) {
+    var server = servers[message.guild.id];
+
+    server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
+
+    server.queue.shift();
+
+    server.dispatcher.on("end", function() {
+        if (server.queue[0]) play(connection, message);
+        else connection.disconnect();
+    });
+}
+var servers = {};
+        var argsplay = message.content.substring(prefix.length).split(" ");
+            if (!argsplay[1]) {
+                message.channel.sendMessage("Merci de mettre un lien à lire.");
+                return;
+            }
+
+            if (!message.member.voiceChannel) {
+                message.channel.sendMessage("Tu dois être dans un salon vocal.");
+                return;
+            }
+
+            if(!servers[message.guild.id]) servers[message.guild.id] = {
+                queue: []
+            };
+
+            var server = servers[message.guild.id];
+
+            server.queue.push(argsplay[1]);
+
+            if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
+                play(connection, message);
+                message.channel.send("Lancement de la musique")
+            });
+        }});
+//Commande skip (musique)
+bot.on('message', message => {
+            if(message.content === prefix + "skip"){
+            var server = servers[message.guild.id];
+
+            if (server.dispatcher) server.dispatcher.end();
+            message.channel.send("Musique skipée")
+            }});
+//Commande stop (musique)
+bot.on('message', message => {
+if(message.content === prefix + "stop"){
+            var server = servers[message.guild.id];
+
+            if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+            message.channel.send("Musique arrêtée")
+}});
