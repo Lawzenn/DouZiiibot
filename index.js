@@ -1282,12 +1282,12 @@ function play(connection, message) {
 var servers = {};
         var argsplay = message.content.substring(prefix.length).split(" ");
             if (!argsplay[1]) {
-                message.channel.sendMessage("Merci de mettre un lien à lire.");
+                message.channel.send("Merci de mettre un lien à lire.");
                 return;
             }
 
             if (!message.member.voiceChannel) {
-                message.channel.sendMessage("Tu dois être dans un salon vocal.");
+                message.channel.send("Tu dois être dans un salon vocal.");
                 return;
             }
 
