@@ -242,7 +242,7 @@ client.on('message', message => {
             "`d!createchannel [nom-du-channel-à-créer]` : *Permet de créer un channel* **||ALIASE :** `d!cc` **||**:white_check_mark:\n" +
             "`d!giverole [@user] [nom-du-role]` : *Permet d'ajouter un rôle à un utilisateur* **||ALIASE :** `d!gr` **||**:white_check_mark:\n" +
             "`d!removerole [@user] [nom-du-role]` : *Permet de retirer un rôle à un utilisateur* **||ALIASE :** `d!rr` **||**:white_check_mark:\n" +
-            "`d!mute [@user]` : *Permet de mute un utilisateur*:white_check_mark:\n" +
+            "`d!mute [@user]` : *Permet de mute un utilisateur* **(pour mute un utilisateur en secondes, veuillez mettre [temps]s, en minutes [temps]m, en heures [temps]h.)**:white_check_mark:\n" +
             "`d!tempmute [@user] [temps]` : *Permet de mute un utilisateur temporairement ( en millisecondes )*:white_check_mark:\n" +
             "`d!unmute [@user]` : *Permet de unmute un utilisateur*:white_check_mark:\n")
       message.author.send({embed});
