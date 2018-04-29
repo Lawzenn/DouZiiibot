@@ -1265,7 +1265,7 @@ client.on('message', message => {
 })
 
 //Système de musique
-bot.on('message', message => {
+client.on('message', message => {
     if(message.content === prefix + "play"){
 function play(connection, message) {
     var server = servers[message.guild.id];
@@ -1305,7 +1305,7 @@ var servers = {};
             });
         }});
 //Commande skip (musique)
-bot.on('message', message => {
+client.on('message', message => {
             if(message.content === prefix + "skip"){
             var server = servers[message.guild.id];
 
@@ -1313,7 +1313,7 @@ bot.on('message', message => {
             message.channel.send("Musique skipée")
             }});
 //Commande stop (musique)
-bot.on('message', message => {
+client.on('message', message => {
 if(message.content === prefix + "stop"){
             var server = servers[message.guild.id];
 
