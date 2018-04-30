@@ -509,7 +509,7 @@ let embed = {
       inline: true
   }, {
       name: ":inbox_tray:Rejoins Le",
-      value: moment.utc(message.guild.createdAt).format("dddd Do MMMM YYYY, HH:mm:ss"),
+      value: member.joinedAt.toString(),
       inline: true
   }, {
       name: ":gear:Compte Crée Le",
