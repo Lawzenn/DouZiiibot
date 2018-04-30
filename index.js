@@ -2,7 +2,6 @@ const Discord = require("discord.js")
 const client = new Discord.Client()
 const ms = require("ms")
 const moment = require("moment");
-const mdf = require("moment-duration-format");
 client.login(process.env.TOKEN)
 
 var prefix = "d!";
