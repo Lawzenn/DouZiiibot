@@ -211,104 +211,298 @@ client.on('message', message => {
       .setTimestamp()
           message.channel.send({embed})
   }
-
-    if(message.content.startsWith(prefix + "help")){
-      if (message.channel.type === "dm") return;
-        let embed = new Discord.RichEmbed()
-        .setColor('#03FC03')
-        .setAuthor(client.user.tag, client.user.avatarURL)
-        .setTitle("__Voici la page d'aide de DouZii__:")
-        .setThumbnail(message.author.avatarURL)
-        .setDescription("__**DIVERS**__ : \n" +
-            " `d!support` : *Te donne le serveur de mon créateur* :white_check_mark:\n" +
-            " `d!invite` : *Te donne le lien pour minviter sur ton serveur* :white_check_mark:\n" +
-            "`d!report` : *Pour faire un report au developpeur ( bug, abus, etc ... )*:white_check_mark:\n" +
-            "`d!demande` : *Pour faire une demande au developpeur ( ajout de commandes, modifications, etc ... )*:white_check_mark:\n" +
-            "`d!avis` : *Pour donner un avis sur le bot* :white_check_mark:")
-      message.author.send({embed});
-      }
-
-      if(message.content.startsWith(prefix + "help")){
-          if (message.channel.type === "dm") return;
-        let embed = new Discord.RichEmbed()
-        .setColor('#FE6F01')
-        .setDescription("__**MODERATION**__ : \n" +
-            " `d!kick (@user)` : *Pour kick un joueur*:white_check_mark:\n" +
-            "`d!ban (@user)` : *Pour ban une personne*:white_check_mark:\n" +
-            "`d!purge ( 2 à 100 )` : *Pour purge des messages*:white_check_mark:\n" +
-            "`logs ( sous activation par salon )` : *Permet de suivre les agissements des utilisateurs*:white_check_mark::regional_indicator_a::regional_indicator_e:\n" +
-            "`d!mute` : *Permet de mute un utilisateur*:hourglass:\n" +
-            "`d!afk` : *Permet de se mettre* **AFK**:hourglass:\n" +
-            "`d!createrole [nom-du-role-à-créer]` : *Permet de créer un role* **||ALIASE :** `d!cr` **||**:white_check_mark:\n" +
-            "`d!createchannel [nom-du-channel-à-créer]` : *Permet de créer un channel* **||ALIASE :** `d!cc` **||**:white_check_mark:\n" +
-            "`d!giverole [@user] [nom-du-role]` : *Permet d'ajouter un rôle à un utilisateur* **||ALIASE :** `d!gr` **||**:white_check_mark:\n" +
-            "`d!removerole [@user] [nom-du-role]` : *Permet de retirer un rôle à un utilisateur* **||ALIASE :** `d!rr` **||**:white_check_mark:\n" +
-            "`d!mute [@user]` : *Permet de mute un utilisateur* **(pour mute un utilisateur en secondes, veuillez mettre [temps]s, en minutes [temps]m, en heures [temps]h.)**:white_check_mark:\n" +
-            "`d!tempmute [@user] [temps]` : *Permet de mute un utilisateur temporairement ( en millisecondes )*:white_check_mark:\n" +
-            "`d!unmute [@user]` : *Permet de unmute un utilisateur*:white_check_mark:\n")
-      message.author.send({embed});
-      }
-
-      if(message.content.startsWith(prefix + "help")){
-          if (message.channel.type === "dm") return;
-      let embed = new Discord.RichEmbed()
-      .setColor('#C3FE01')
-      .setDescription("__**FUN**__ : \n" +
-      "`d!date` : *Te dit quel jour nous somme*:white_check_mark:\n" + 
-      "`d!avatar` : *Te donne ton avatar*:white_check_mark:\n" + 
-      "`d!userinfo(@user)` : *Affiche les infos de l'utilisateur mentionné* **|| ALIASE : **`d!ui`:white_check_mark:\n" +
-      "`d!ping` : *Affiche le ping du bot*:white_check_mark:\n" +
-      "`d!serveurinfo` : *Affiche les infos du serveur* **|| ALIASE :**`d!si` **||**:white_check_mark:\n" +
-      "`d!botinfo` : *Pour voir les infos sur le bot* **|| ALIASE : **`d!bi` **||**:white_check_mark:\n" +
-      "`d!sondage` : *Execute un sondage*:white_check_mark:\n" +
-      "`d!8ball(question)` : *Poser une question et le bot répond*:white_check_mark: \n" +
-      "`images aléatoires` : *Send plusieurs type d'images aléatoirement* :white_check_mark: :regional_indicator_e:\n" +
-      "`nsfw` : *Voir du porno*:white_check_mark: :regional_indicator_a: :regional_indicator_e:\n" +
-      "`d!vcs [message]` : *Envoie un message VCS*:white_check_mark: :regional_indicator_a: :regional_indicator_e:\n")
-    message.author.send({embed});
-      }
     
-      if(message.content.startsWith(prefix + "help")) {
-          if (message.channel.type === "dm") return;
-          let embed = new Discord.RichEmbed()
-          .setColor('#FE0101')
-          .setDescription("__**ACTIVATIONS**__ (:regional_indicator_a:)\n" +
-        "`logs` : *Créer un salon* ***#logs-douzii***\n" +
-        "`Bienvenue-Bye` : *Se met dans un salon* ***#bienvenue-bye***\n" +
-        "`nsfw` : *Créer un salon* ***#nsfw***\n" +
-        "`d!vcs [message]` : *Créer un salon* ***#vcs-douzii***\n" + 
-        "`info` : *Créer un salon* ***#infos-douzii***\n")
-    message.author.send({embed});
-      }
-
-      if(message.content.startsWith(prefix + "help")) {
-          if (message.channel.type === "dm") return;
-          let embed = new Discord.RichEmbed()
-          .setColor('#DC009A')
-          .setDescription("__**EXPLICATIONS**__ (:regional_indicator_e:)\n" +
-        "`logs` : *MemberAdd, MemberRemove, MessageUpdate, MessageDelete, ChannelCreate, ChannelDelete, RoleCreate, RoleDelete*\n" +
-        "`nsfw` : *4k, ass, boobs, fuck, suck, hentaiimg, hentaigif*\n" +
-        "`images aléatoires` : *d!cat, d!dog, d!kiss (@user), d!punch (@user), d!slap (@user), d!hug(@user), d!bang (@user)*\n" +
-        "`d!vcs [message]` : *Le vcs est une fonction inter-serveur, ce qui veut dire que quand vous envoyez un message **VCS**, le message sera reçu dans tout les serveurs où le salon ***#vcs-douzii*** sera créé\n" +
-        "`info` : *Cette fonction permet d'avoir les nouveautés de douzii, un message sera envoyé dans le salon approprié ( expliqué dans la partie ACTIVATION )\n")
-      message.author.send({embed});
-      }
-
-      if(message.content.startsWith(prefix + "help")) {
-          if (message.channel.type === "dm") return;
-        let embed = new Discord.RichEmbed()
-        .setColor('#0177FE')
-        .setDescription("__**LEGENDE**__ : \n" +
-        ":x: = **commande non disponible**\n" +
-        ":white_check_mark: = **commande disponible**\n" +
-        ":hourglass: = **commande en cours de developpement**\n" +
-        ":regional_indicator_a: = **activations commandes**\n" +
-        ":regional_indicator_e: = **explications commandes**")
-        .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
-        .setTimestamp()
-      message.author.send({embed});
-          message.reply(":point_right:help envoyé en MP:envelope_with_arrow:");
-      }
+        if (message.content.startsWith(prefix + "help")) {
+        (async function() {
+        const mainmessage = await message.channel.send("", {embed: {
+          color: Math.floor(Math.random()*16777216),
+          author: {
+                name: "Liste d'aide🆘",
+                icon_url: message.guild.avatarURL
+               },
+    
+          description: "📋 Affiche ce message\n📚 Divers\n🛑 Pour supprimer ce message\n🔧 Modération\n🇦 Activation\n🇪 Explication\n🇱 Légende",
+                  }
+            })
+      
+                  await mainmessage.react("📋");    
+                  await mainmessage.react("📚");
+                  await mainmessage.react("🔧");
+                  await mainmessage.react("🎉");
+                  await mainmessage.react("🇦");
+                  await mainmessage.react("🇪");
+                  await mainmessage.react("🇱");
+                  await mainmessage.react("🛑");       
+                  
+      
+                  const panier = mainmessage.createReactionCollector((reaction, user) => user.id === message.author.id);
+                   
+                  panier.on('collect', async(reaction) => 
+                  {
+              if (reaction.emoji.name === "📋") {
+                  mainmessage.edit('', {embed: {
+                      color: Math.floor(Math.random()*16777216),
+                      author: {
+                                name: "Liste d'aide🆘",
+                                icon_url: message.guild.avatarURL
+                               },
+                    
+                          description: "📋 Affiche ce message\n📚 Divers\n🛑 Pour supprimer ce message\n🔧 Modération\n🇦 Activation\n🇪 Explication\n🇱 Légende",
+                         
+                    }
+                })
+              }
+    
+          if (reaction.emoji.name === "📚") {
+              mainmessage.edit('', {embed: {
+                  color: Math.floor(Math.random()*16777216),
+                fields: [{
+                    name: "d!support",
+                    value: "Te donne le serveur de mon créateur :white_check_mark:",
+                    inline: false
+                }, {
+                    name: "d!invite",
+                    value: "Pour m'inviter a ton serveur :white_check_mark:",
+                    inline: false
+                }, {
+                    name: "d!report",
+                    value: "Pour faire un report au developpeur ( bug, abus, etc ... ):white_check_mark:",
+                    inline: false
+                }, {
+                    name: "d!demande",
+                    value: "Pour faire une demande au developpeur ( ajout de commandes, modifications, etc ... ):white_check_mark:",
+                    inline: false
+                }, {
+                    name: "d!avis",
+                    value: "Pour donner un avis sur le bot:white_check_mark:",
+                    inline: false
+                }, {
+                }],
+                      footer: {
+                          icon_url: client.user.avatarURL,
+                          text: `Demandé par ${message.author.tag}`
+                        },
+                }
+            })
+          }
+          if (reaction.emoji.name === "🔧") {
+            mainmessage.edit('', {embed: {
+                color: Math.floor(Math.random()*16777216),
+                    fields: [{
+                        name: "d!kick",
+                        value: "Pour kick un joueur:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!ban",
+                        value: "Pour ban un joueur:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!purge ( 2 à 100 )",
+                        value: "Pour purge des messages:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "logs ( sous activation par salon )",
+                        value: "Permet de suivre les agissements des utilisateurs:white_check_mark::regional_indicator_a::regional_indicator_e:",
+                        inline: false
+                    }, {
+                        name: "d!afk",
+                        value: "Permet de se mettre **AFK**:hourglass:",
+                        inline: false
+                    }, {
+                        name: "d!createrole [nom-du-role-à-créer]",
+                        value: "Permet de créer un role **||ALIASE :** d!cr **||**:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!createchannel [nom-du-channel-à-créer]",
+                        value: "Permet de créer un channel **||ALIASE :** d!cc **||**:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!giverole [@user] [nom-du-role]",
+                        value: "Permet d'ajouter un rôle à un utilisateur **||ALIASE :** d!gr **||**:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!removerole [@user] [nom-du-role]",
+                        value: "Permet de retirer un rôle à un utilisateur **||ALIASE :** d!rr **||**:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!mute [@user]",
+                        value: "Permet de mute un utilisateur **(pour mute un utilisateur en secondes, veuillez mettre, en secondes [temps]s, en minutes [temps]m, en heures [temps]h.)**:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!tempmute [@user] [temps]",
+                        value: "Permet de mute un utilisateur temporairement ( en secondes, minutes, heures ):white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!unmute [@user]",
+                        value: "Permet de unmute un utilisateur*:white_check_mark:",
+                        inline: false
+                    }],
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: `Demandé par ${message.author.tag}`
+                      }
+              }
+          })
+        }
+        if (reaction.emoji.name === "🎉") {
+            mainmessage.edit('', {embed: {
+                color: Math.floor(Math.random()*16777216),
+                    fields: [{
+                        name: "d!date",
+                        value: "Te dis la date du jour:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!avatar",
+                        value: "Te donne ton avatar:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!userinfo(@user)",
+                        value: "Affiche les infos de l'utilisateur mentionné **|| ALIASE : **`d!ui:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!ping",
+                        value: "Affiche le ping du bot:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!serveurinfo",
+                        value: "Affiche les infos du serveur **|| ALIASE :**d!si **||**:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!botinfo",
+                        value: "Pour voir les infos sur le bot **|| ALIASE : **d!bi **||**:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!sondage",
+                        value: "Execute un sondage:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "d!8ball(question)",
+                        value: "Poser une question et le bot répond:white_check_mark:",
+                        inline: false
+                    }, {
+                        name: "images aléatoires",
+                        value: "Send plusieurs type d'images aléatoirement :white_check_mark: :regional_indicator_e:",
+                        inline: false
+                    }, {
+                        name: "nsfw",
+                        value: "Voir du porno:white_check_mark: :regional_indicator_a: :regional_indicator_e:",
+                        inline: false
+                    }, {
+                        name: "d!vcs [message]",
+                        value: "Envoie un message VCS:white_check_mark: :regional_indicator_a: :regional_indicator_e:",
+                        inline: false
+                    }],
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: `Demandé par ${message.author.tag}`
+                      }
+              }
+          })
+        }
+        if (reaction.emoji.name === "🇦") {
+            mainmessage.edit('', {embed: {
+                color: Math.floor(Math.random()*16777216),
+                    fields: [{
+                        name: "logs",
+                        value: "Créer un salon ***#logs-douzii***",
+                        inline: false
+                    }, {
+                        name: "Bienvenue-Bye",
+                        value: "Se met dans un salon ***#bienvenue-bye***",
+                        inline: false
+                    }, {
+                        name: "nsfw",
+                        value: "Créer un salon ***#nsfw***",
+                        inline: false
+                    }, {
+                        name: "d!vcs [message]",
+                        value: "Créer un salon ***#vcs-douzii***",
+                        inline: false
+                    }, {
+                        name: "info",
+                        value: "Créer un salon ***#infos-douzii***",
+                        inline: false
+                    }],
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: `Demandé par ${message.author.tag}`
+                      }
+              }
+          })
+        }
+        if (reaction.emoji.name === "🇪") {
+            mainmessage.edit('', {embed: {
+                color: Math.floor(Math.random()*16777216),
+                    fields: [{
+                        name: "logs",
+                        value: "MemberAdd, MemberRemove, MessageUpdate, MessageDelete, ChannelCreate, ChannelDelete, RoleCreate, RoleDelete, BanAdd, BanRemove",
+                        inline: false
+                    }, {
+                        name: "nsfw",
+                        value: "4k, ass, boobs, fuck, suck, hentaiimg, hentaigif",
+                        inline: false
+                    }, {
+                        name: "images aléatoires",
+                        value: "d!cat, d!dog, d!kiss (@user), d!punch (@user), d!slap (@user), d!hug(@user), d!bang (@user)",
+                        inline: false
+                    }, {
+                        name: "d!vcs [message]",
+                        value: "Le vcs est une fonction inter-serveur, ce qui veut dire que quand vous envoyez un message **VCS**, le message sera reçu dans tout les serveurs où le salon ***#vcs-douzii*** sera créé",
+                        inline: false
+                    }, {
+                        name: "info",
+                        value: "Cette fonction permet d'avoir les nouveautés de douzii, un message sera envoyé dans le salon approprié ( expliqué dans la partie ACTIVATION )",
+                        inline: false
+                    }],
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: `Demandé par ${message.author.tag}`
+                      }
+              }
+          })
+        }
+        if (reaction.emoji.name === "🇱") {
+            mainmessage.edit('', {embed: {
+                color: Math.floor(Math.random()*16777216),
+                    fields: [{
+                        name: ":x:",
+                        value: "Commande non disponible",
+                        inline: false
+                    }, {
+                        name: ":white_check_mark:",
+                        value: "Commande disponible",
+                        inline: false
+                    }, {
+                        name: ":hourglass:",
+                        value: "Commande en cours de developpement",
+                        inline: false
+                    }, {
+                        name: ":regional_indicator_a",
+                        value: "Activation commandes",
+                        inline: false
+                    }, {
+                        name: ":regional_indicator_e:",
+                        value: "explications commandes",
+                        inline: false
+                    }],
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: `Demandé par ${message.author.tag}`
+                      }
+              }
+          })
+        }
+          if (reaction.emoji.name === "🛑") {
+                  
+            mainmessage.delete()
+            
+             }
+             await reaction.remove(message.author.id);
+    
+            });
+             }());
+             message.delete(message.author)
+            }
 
     if(message.content.startsWith(prefix + "invite")) {
       let embed = new Discord.RichEmbed()
