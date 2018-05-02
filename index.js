@@ -196,9 +196,20 @@ client.on("messageDelete", (message) => {
   })
 
 client.on('message', message => {
-  if(message.content.startsWith(prefix + "avatar")) {
-      message.channel.send(message.author.avatarURL);
-  }
+    if (message.content.startsWith(prefix + "avatar")) {
+        message.delete(message.author)
+        if (message.channel.type === "dm") return;
+        
+        let user = message.mentions.users.first() ? message.mentions.users.first() : message.author;
+        
+        var embed = new Discord.RichEmbed()
+            .setColor('#C3FE01') 
+            .setTitle(user.username)
+            .setImage(user.avatarURL) 
+            
+        message.channel.send(embed);
+        
+    };
 
   if(message.content.startsWith(prefix + "date")) {
       var d = new Date()
@@ -420,6 +431,9 @@ if(message.content.startsWith(prefix + "help")){
       .addField("Nombre de salons", message.guild.channels.size)
       .addField("Nombre de rôles", message.guild.roles.size)
       .addField("liste de rôles", message.guild.roles.map(r => r.name).length > 900 ? "Trop de rôle" : message.guild.roles.map(r => r.name))
+      .addField("Humains", `${message.guild.members.filter(member => !member.user.bot).size}`)
+      .addFields("Bots", `${message.guild.members.filter(member => member.user.bot).size}`)
+      .addField("Status", `**${message.guild.members.filter(o => o.presence.status === 'online').size}** Online\n**${message.guild.members.filter(i => i.presence.status === 'idle').size}** Idle/Away\n**${message.guild.members.filter(dnd => dnd.presence.status === 'dnd').size}** DND\n**${message.guild.members.filter(off => off.presence.status === 'offline').size}** Offline/Invisible\n**${message.guild.members.filter(s => s.presence.status === 'streaming').size}** Streaming`)
       .setColor("#C3FE01")
       .setFooter(`Demandé par ${message.author.tag} | © 🌺🍃FroGroZe🍃🌺#6893`)
       .setTimestamp()
