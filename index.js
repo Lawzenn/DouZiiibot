@@ -27,6 +27,12 @@ client.on('ready', () =>  {
 bvn.send({embed})
 });
 
+client.on("guildMemberAdd"), member => {
+    if (message.guild.id == "441264881350737940") return;
+    var autorole = member.guild.roles.find('name', 'Membres');
+    member.addRole(role)
+})
+
 client.on("guildMemberAdd", member => {
     const logs = member.guild.channels.find(m => m.name === "logs-douzii");
     if (!logs) return;
