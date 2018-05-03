@@ -254,7 +254,6 @@ if(message.content.startsWith(prefix + "help")){
             "`d!ban (@user)` : *Pour ban une personne*:white_check_mark:\n" +
             "`d!purge ( 2 à 100 )` : *Pour purge des messages*:white_check_mark:\n" +
             "`logs ( sous activation par salon )` : *Permet de suivre les agissements des utilisateurs*:white_check_mark::regional_indicator_a::regional_indicator_e:\n" +
-            "`d!mute` : *Permet de mute un utilisateur*:hourglass:\n" +
             "`d!afk` : *Permet de se mettre* **AFK**:hourglass:\n" +
             "`d!createrole [nom-du-role-à-créer]` : *Permet de créer un role* **||ALIASE :** `d!cr` **||**:white_check_mark:\n" +
             "`d!createchannel [nom-du-channel-à-créer]` : *Permet de créer un channel* **||ALIASE :** `d!cc` **||**:white_check_mark:\n" +
