@@ -342,6 +342,17 @@ if(message.content.startsWith(prefix + "help")){
           message.channel.send("Pour quoi vouloir m'éteindre ;-;")
         }
       }
+    
+    if(message.content.startsWith(prefix + "JMA")) {
+        if (message.guild.id == "372395664560226304") return;
+        let embed = new Discord.RichEmbed()
+        .setAuthor("JEAN MICHEL AULAS")
+        .setDescription("JEAAAAN MICHEL AULASSSSS, OHHH GROSSEEEEE PETASSEEEEE, ON VA TOUT CASSER CHEZ TOIIIIIII")
+        .setImage("http://static.parisfans.fr/wp-content/uploads/2018/01/Jean-Michel-Aulas-qualifie-Al-Khelaifi-et-Desplat-de-peste-ou-cholera-et-se-defend-avec-lhumour.jpg")
+        .setFooter("ALLEZ L'OM")
+        .setTimestamp()
+        message.channel.send(embed)
+    }
 
         if(message.content.startsWith(prefix + "ping")){
           let startTime = Date.now();
