@@ -22,6 +22,7 @@ client.on('ready', () =>  {
       .setDescription("J'espère que tu t'y plairas")
       .addField("Ma commande est `d!help`", "Si tu souhaites savoir mon fonctionnement")
       .addField(`Nombre de membres après l'arrivée de __${member.user.tag}__`, member.guild.memberCount)
+      .setImage(member.avatarURL)
       .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
       .setTimestamp()
 bvn.send({embed})
