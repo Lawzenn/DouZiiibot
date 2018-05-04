@@ -344,9 +344,9 @@ if(message.content.startsWith(prefix + "help")){
       }
     
     if(message.content.startsWith(prefix + "JMA")) {
-        if (message.guild.id == "372395664560226304") return;
         message.delete(message.author)
         let embed = new Discord.RichEmbed()
+        .setColor("#C3FE01")
         .setAuthor("JEAN MICHEL AULAS")
         .setDescription("JEAAAAN MICHEL AULASSSSS, OHHH GROSSEEEEE PETASSEEEEE, ON VA TOUT CASSER CHEZ TOIIIIIII")
         .setImage("http://static.parisfans.fr/wp-content/uploads/2018/01/Jean-Michel-Aulas-qualifie-Al-Khelaifi-et-Desplat-de-peste-ou-cholera-et-se-defend-avec-lhumour.jpg")
