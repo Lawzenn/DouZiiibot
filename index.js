@@ -345,6 +345,7 @@ if(message.content.startsWith(prefix + "help")){
     
     if(message.content.startsWith(prefix + "JMA")) {
         if (message.guild.id == "372395664560226304") return;
+        message.delete(message.author)
         let embed = new Discord.RichEmbed()
         .setAuthor("JEAN MICHEL AULAS")
         .setDescription("JEAAAAN MICHEL AULASSSSS, OHHH GROSSEEEEE PETASSEEEEE, ON VA TOUT CASSER CHEZ TOIIIIIII")
