@@ -51,6 +51,7 @@ client.on("guildMemberRemove", member => {
     .setTitle("Départ d'un utilisateur")
     .addField("Il s'agit de", `[${member.user.tag}](https://discordapp.com/)`, true)
     .addField(`Nombre de membres après le départ de __${member.user.tag}__`, member.guild.memberCount)
+    .setImage(member.avatarURL)
     .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
     .setTimestamp()
     bye.send({embed})
