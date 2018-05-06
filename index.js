@@ -8,25 +8,24 @@ var prefix = "d!";
 
 client.on('ready', () =>  {
     console.log("Je suis connecté !")
-     client.user.setActivity("d!help | © 🌺🍃FroGroZe🍃🌺#6893 | "+ client.guilds.size + " Serveurs, " + client.users.size + "  Utilisateurs")
+     client.user.setActivity("d!help | © 🌺🍃FroGroZe🍃🌺#6893 | "+ client.guilds.size + " Serveurs, " + client.users.size + "  Utilisateurs", {type: "WATCHING"})
   });
 
   client.on("guildMemberAdd", member => {
-    const bvn = member.guild.channels.find(m => m.name === "bienvenue-bye");
+    const bvn = member.guild.channels.find(m => m.name === "bienvenue-bye")
     if (!bvn) return;
     const embed = new Discord.RichEmbed()
-      .setColor('#009114')
-      .setAuthor(member.user.tag, member.user.avatarURL)
-      .setTitle("Arrivée d'un nouvel utilisateur")
-      .addField("Un nouvel utilisateur vient d'arriver", `Il s'agit de [${member.user.tag}](https://discordapp.com/)`, true)
-      .setDescription("J'espère que tu t'y plairas")
-      .addField("Ma commande est `d!help`", "Si tu souhaites savoir mon fonctionnement")
-      .addField(`Nombre de membres après l'arrivée de __${member.user.tag}__`, member.guild.memberCount)
-      .setImage(member.avatarURL)
-      .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
-      .setTimestamp()
-bvn.send({embed})
-});
+    .setColor('#009114')
+    .setAuthor("Arrivée d'un utilisateur", member.user.avatarURL)
+    .setThumbnail(member.user.avatarURL)
+    .setDescription(`Bienvenue ${member} sur le serveur **${member.guild.name}**\n` +
+    `Il y a maintenant **${member.guild.memberCount} membres**`)
+    .setImage("https://image.jimcdn.com/app/cms/image/transf/none/path/sce73df4689f105dd/image/i826368ffdb24a3fd/version/1510755737/image.jpg")
+    .setFooter(`ID : ${member.user.id}`)
+    .setTimestamp()
+    bvn.send(embed)
+})
+
 
 client.on("guildMemberAdd", member => {
     const logs = member.guild.channels.find(m => m.name === "logs-douzii");
@@ -43,19 +42,19 @@ logs.send({embed})
 });
 
 client.on("guildMemberRemove", member => {
-    const bye = member.guild.channels.find(m => m.name === "bienvenue-bye");
-    if(!bye) return;
+    const bvn = member.guild.channels.find(m => m.name === "bienvenue-bye")
+    if (!bvn) return;
     const embed = new Discord.RichEmbed()
-    .setColor('#9F0000')
-    .setAuthor(member.user.tag, member.user.avatarURL)
-    .setTitle("Départ d'un utilisateur")
-    .addField("Il s'agit de", `[${member.user.tag}](https://discordapp.com/)`, true)
-    .addField(`Nombre de membres après le départ de __${member.user.tag}__`, member.guild.memberCount)
-    .setImage(member.avatarURL)
-    .setFooter(`ID : ${member.user.id} | © 🌺🍃FroGroZe🍃🌺#6893`)
+    .setColor('#009114')
+    .setAuthor("Départ d'un utilisateur", member.user.avatarURL)
+    .setThumbnail(member.user.avatarURL)
+    .setDescription(`Aurevoir ${member}\n` +
+    `Il y a maintenant **${member.guild.memberCount} membres**`)
+    .setImage("http://www.lesaffaires.com/uploads/images/normal/578f645f2123b12d0257dfa1fbdb8fff.jpg")
+    .setFooter(`ID : ${member.user.id}`)
     .setTimestamp()
-    bye.send({embed})
-    });
+    bvn.send(embed)
+})
 
 client.on("guildMemberRemove", member => {
     const logs = member.guild.channels.find(m => m.name === "logs-douzii");
@@ -1278,11 +1277,16 @@ client.on('message', message => {
         
           return;
         }
-})
+    
+        if(message.content.startsWith(prefix + "purgedujour") || message.content.startsWith(prefix + "pj")) {
+            if (message.member.hasPermission("MANAGE_MESSAGES")) {
+                message.channel.fetchMessages()
+                   .then(function(list){
+                        message.channel.bulkDelete(list);
+                    }, function(err){message.channel.send("Erreur")})}
+        }
+    })
 
-//Système de musique
-client.on('message', message => {
-    if(message.content === prefix + "play"){
 function play(connection, message) {
     var server = servers[message.guild.id];
 
@@ -1295,15 +1299,26 @@ function play(connection, message) {
         else connection.disconnect();
     });
 }
+
 var servers = {};
+
+client.on("message", function(message) {
+    if (message.author.equals(client.user)) return;
+    
+    if (!message.content.startsWith(prefix)) return;
+    
+    var args = message.content.substring(prefix.length).split(" ");
+    
+    switch (args[0].toLowerCase()) {
+        case "play":
         var argsplay = message.content.substring(prefix.length).split(" ");
             if (!argsplay[1]) {
-                message.channel.send("Merci de mettre un lien à lire.");
+                message.channel.send("Merci d'envoyer le lien. :warning:");
                 return;
             }
 
             if (!message.member.voiceChannel) {
-                message.channel.send("Tu dois être dans un salon vocal.");
+                message.channel.send("Tu dois être dans un channel vocal. :warning:");
                 return;
             }
 
@@ -1317,22 +1332,19 @@ var servers = {};
 
             if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
                 play(connection, message);
-                message.channel.send("Lancement de la musique")
+                message.channel.send("Lancement de votre musique. :notes: ( si une musique est déjà en cours, votre musique que vous venez de demander sera jouéée après celle-ci. )")
             });
-        }});
-//Commande skip (musique)
-client.on('message', message => {
-            if(message.content === prefix + "skip"){
+            break;
+        case "skip":
             var server = servers[message.guild.id];
 
             if (server.dispatcher) server.dispatcher.end();
-            message.channel.send("Musique skipée")
-            }});
-//Commande stop (musique)
-client.on('message', message => {
-if(message.content === prefix + "stop"){
+            message.channel.send("Musique skipée !:fast_forward:")
+            break;
+        case "stop":
             var server = servers[message.guild.id];
 
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-            message.channel.send("Musique arrêtée")
-}});
+            message.channel.send("Musique arrêtée.:end:")
+            }
+        })
